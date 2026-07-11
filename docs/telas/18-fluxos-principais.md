@@ -1,114 +1,36 @@
 # 18 — Fluxos Principais
 
-# 1. Fluxo de agendamento pelo cliente
+## Fluxo de agendamento
 
-```mermaid
-flowchart TD
-    A[Cliente acessa página] --> B[Escolhe serviço]
-    B --> C[Escolhe barbeiro]
-    C --> D[Escolhe data]
-    D --> E[Sistema mostra horários disponíveis]
-    E --> F[Cliente escolhe horário]
-    F --> G[Confirma dados]
-    G --> H[Sistema cria agendamento]
-    H --> I[Notifica cliente]
-    H --> J[Notifica barbeiro]
-    H --> K[Notifica dono]
-```
+1. Cliente escolhe barbearia.
+2. Cliente escolhe serviço.
+3. Cliente escolhe barbeiro.
+4. Sistema mostra horários disponíveis.
+5. Cliente escolhe horário.
+6. Sistema confirma o agendamento.
+7. Cliente, barbeiro e dono podem receber notificação.
 
----
+## Fluxo de bloqueio de horário
 
-# 2. Fluxo de cancelamento
+1. Admin escolhe barbeiro.
+2. Admin escolhe data e horário.
+3. Admin informa motivo.
+4. Sistema cria bloqueio.
+5. Horário deixa de aparecer como disponível.
 
-```mermaid
-flowchart TD
-    A[Usuário solicita cancelamento] --> B[Sistema verifica permissão]
-    B --> C{Pode cancelar?}
-    C -->|Sim| D[Atualiza status para cancelado]
-    C -->|Não| E[Mostra erro]
-    D --> F[Registra motivo]
-    D --> G[Notifica envolvidos]
-    D --> H[Verifica fila de espera]
-```
+## Fluxo de comissão
 
----
+1. Atendimento é concluído.
+2. Sistema identifica valor do serviço.
+3. Sistema identifica regra de comissão.
+4. Sistema calcula valor da comissão.
+5. Comissão aparece no dashboard do Admin e do barbeiro.
 
-# 3. Fluxo de fila de espera
+## Fluxo de fila de espera
 
-```mermaid
-flowchart TD
-    A[Cliente não encontra horário] --> B[Entra na fila]
-    B --> C[Sistema registra posição]
-    C --> D[Um horário é cancelado]
-    D --> E[Sistema procura fila compatível]
-    E --> F[Oferece vaga ao primeiro cliente]
-    F --> G{Cliente respondeu?}
-    G -->|Aceitou| H[Cria agendamento]
-    G -->|Recusou ou expirou| I[Chama próximo]
-```
+1. Cliente tenta agendar em data lotada.
+2. Sistema oferece entrada na fila.
+3. Cliente informa preferência.
+4. Sistema registra posição.
+5. Se uma vaga abrir, o cliente é chamado.
 
----
-
-# 4. Fluxo de comissão
-
-```mermaid
-flowchart TD
-    A[Atendimento concluído] --> B[Sistema identifica barbeiro]
-    B --> C[Sistema identifica serviço]
-    C --> D[Busca regra de comissão]
-    D --> E[Calcula valor]
-    E --> F[Cria comissão pendente]
-    F --> G[Mostra no dashboard]
-    G --> H[Admin marca como paga]
-```
-
----
-
-# 5. Fluxo de estoque
-
-```mermaid
-flowchart TD
-    A[Produto vendido] --> B[Sistema reduz estoque]
-    B --> C{Estoque abaixo do mínimo?}
-    C -->|Sim| D[Notifica Admin]
-    C -->|Não| E[Finaliza venda]
-    D --> E
-```
-
----
-
-# 6. Fluxo de avaliação Google
-
-```mermaid
-flowchart TD
-    A[Atendimento concluído] --> B[Job agenda mensagem]
-    B --> C[Envia WhatsApp com link]
-    C --> D[Registra envio]
-```
-
----
-
-# 7. Fluxo de lembrete de corte
-
-```mermaid
-flowchart TD
-    A[Job diário roda] --> B[Busca clientes sem corte há X dias]
-    B --> C[Verifica aceite de mensagem]
-    C --> D[Envia convite para agendar]
-    D --> E[Registra envio]
-```
-
----
-
-# 8. Fluxo de controle de dispositivos
-
-```mermaid
-flowchart TD
-    A[Usuário faz login] --> B[Sistema identifica dispositivo]
-    B --> C{Dispositivo já registrado?}
-    C -->|Sim| D[Permite acesso]
-    C -->|Não| E[Conta dispositivos ativos]
-    E --> F{Limite atingido?}
-    F -->|Não| G[Registra novo dispositivo]
-    F -->|Sim| H[Bloqueia login ou pede remoção]
-```

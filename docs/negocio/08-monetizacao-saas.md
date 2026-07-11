@@ -2,165 +2,56 @@
 
 ## Objetivo
 
-Transformar o sistema em um produto vendável para várias barbearias.
+Transformar o Varthex Barber em um sistema vendável para várias barbearias.
 
-A monetização deve combinar:
+## Formas de monetização
 
-- Planos mensais.
-- Limites por plano.
+- Mensalidade por barbearia.
 - Cobrança por barbeiro adicional.
+- Cobrança por unidade adicional.
 - Cobrança por dispositivo adicional.
-- Cobrança por módulos extras.
-- Cobrança por uso de WhatsApp/CRM.
-- Cobrança por unidades extras.
+- Módulo WhatsApp pago.
+- Módulo CRM pago.
+- Módulo de relatórios avançados.
+- Módulo de fidelidade.
+- Integração Google Agenda como recurso premium.
 
----
+## Exemplo de planos
 
-# 1. Cobrança por plano
-
-## Plano Inicial
+### Básico
 
 Para barbearias pequenas.
 
-### Inclui
+Inclui:
 
-- 1 unidade.
-- Até 2 barbeiros.
-- Agenda básica.
-- Cadastro de clientes.
-- Cadastro de serviços.
-- Bloqueio de horários.
-- Comissão simples.
-- Dashboard diário.
+- agenda;
+- clientes;
+- barbeiros limitados;
+- serviços;
+- dashboard simples.
 
-### Não inclui
-
-- WhatsApp CRM.
-- Menu WhatsApp.
-- Google Agenda.
-- Fidelidade.
-- Planos para clientes.
-- Relatórios avançados.
-
----
-
-## Plano Profissional
+### Profissional
 
 Para barbearias em crescimento.
 
-### Inclui
+Inclui:
 
-- Até 5 barbeiros.
-- Agenda completa.
-- Fila de espera.
-- Agendamento recorrente.
-- Estoque.
-- Comissão personalizada.
-- Dashboard diário, semanal e mensal.
-- Fechamento financeiro.
-- Link de avaliação do Google.
-- Lembrete de corte.
+- fila de espera;
+- recorrência;
+- estoque;
+- comissão avançada;
+- dashboard completo.
 
----
+### Premium
 
-## Plano Premium
+Para barbearias maiores.
 
-Para barbearias que querem automação.
+Inclui:
 
-### Inclui
+- WhatsApp CRM;
+- fidelidade;
+- Google Agenda;
+- controle de dispositivos;
+- relatórios avançados;
+- módulos pagos inclusos.
 
-- Até 10 barbeiros ou mais.
-- WhatsApp CRM.
-- Menu WhatsApp.
-- Campanhas.
-- Fidelidade.
-- Planos para clientes.
-- Google Agenda.
-- Controle de dispositivos.
-- Relatórios avançados.
-- Suporte prioritário.
-
----
-
-# 2. Cobrança por barbeiro adicional
-
-Exemplo:
-
-- Plano permite 2 barbeiros.
-- A barbearia quer cadastrar 3.
-- Cobra valor extra por barbeiro adicional.
-
----
-
-# 3. Cobrança por dispositivo adicional
-
-Regra sugerida:
-
-- Cada barbeiro tem direito a 2 dispositivos.
-- Dispositivo extra custa um valor adicional.
-
-Exemplo:
-
-- Celular do barbeiro.
-- Computador da barbearia.
-- Tablet extra: cobrado à parte.
-
----
-
-# 4. Cobrança por CRM WhatsApp
-
-O WhatsApp pode ser um módulo premium.
-
-## Possíveis cobranças
-
-- Valor fixo mensal para ativar CRM.
-- Pacote de mensagens.
-- Cobrança por campanha.
-- Cobrança por menu automatizado.
-- Cobrança por templates avançados.
-
----
-
-# 5. Cobrança por módulos extras
-
-Módulos que podem ser pagos:
-
-- CRM WhatsApp.
-- Menu WhatsApp.
-- Programa de fidelidade.
-- Planos para clientes.
-- Google Agenda.
-- Relatórios avançados.
-- Controle de estoque avançado.
-- Multiunidade.
-- Auditoria.
-- API externa.
-
----
-
-# 6. Teste grátis
-
-O SaaS pode oferecer teste grátis.
-
-## Sugestão
-
-- 7 dias grátis para Plano Profissional.
-- Limite de até 2 barbeiros.
-- Sem disparo massivo de WhatsApp.
-- Após o teste, a barbearia escolhe um plano.
-
----
-
-# 7. Bloqueio por inadimplência
-
-Caso a barbearia não pague:
-
-## Possíveis níveis
-
-1. Aviso interno.
-2. Bloqueio de recursos premium.
-3. Bloqueio de novos agendamentos.
-4. Acesso somente leitura.
-5. Bloqueio total administrativo.
-
-A política deve ser clara no contrato.

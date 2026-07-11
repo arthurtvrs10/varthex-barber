@@ -1,75 +1,68 @@
-# Software SaaS para Barbearia
+# Varthex Barber — Documentação do Produto
 
-Documentação inicial de produto, negócio e tecnologia para criação de um sistema completo de barbearia em modelo SaaS.
+Documentação inicial do **Varthex Barber**, um sistema SaaS para gestão de barbearias.
 
-O sistema contempla:
+> Esta versão é **somente documentação**. Não contém backend pronto, frontend pronto nem código de implementação. O objetivo é orientar o desenvolvimento do projeto usando **Java + Spring Boot no backend**, **Next.js no frontend**, **PostgreSQL**, **Redis** e **Docker Compose**.
 
-- Agendamento de cortes e serviços.
-- Cadastro de clientes, barbeiros, donos/admins e superadmin.
-- Horários de funcionamento.
-- Bloqueio e desbloqueio de horários.
-- Agendamento recorrente.
-- Fila de espera para dias intensos.
-- Estoque de produtos.
-- Programa de fidelidade.
-- Planos para clientes.
-- CRM via WhatsApp.
-- Menu automatizado no WhatsApp.
-- Notificações internas e externas.
-- Cálculo de comissão por barbeiro.
-- Dashboard diário, semanal e mensal.
-- Fechamento financeiro.
-- Integração com Google Agenda.
-- Envio de link de avaliação do Google.
-- Lembretes de corte.
-- Regras de monetização para vender o sistema.
-- Controle de dispositivos por barbeiro.
+---
+
+## Objetivo do projeto
+
+Criar uma plataforma SaaS para barbearias com:
+
+- agendamento de cortes e serviços;
+- cadastro de clientes, barbeiros, admins e superadmin;
+- controle de horários, bloqueios e disponibilidade;
+- agendamento recorrente;
+- fila de espera;
+- estoque de produtos;
+- programa de fidelidade;
+- planos para clientes;
+- CRM via WhatsApp;
+- notificações;
+- cálculo de comissão;
+- dashboard diário, semanal e mensal;
+- integração futura com Google Agenda;
+- envio de link para avaliação no Google;
+- regras de monetização do SaaS;
+- controle de dispositivos por barbeiro.
+
+---
+
+## Stack definida
+
+| Camada | Tecnologia |
+|---|---|
+| Backend | Java 21 + Spring Boot |
+| Frontend | Next.js + TypeScript |
+| Banco de dados | PostgreSQL |
+| Cache / filas | Redis |
+| DevOps local | Docker Compose |
+| Documentação de API | OpenAPI / Swagger |
+| Segurança | Spring Security + JWT |
+| Migrations | Flyway ou Liquibase |
+| Testes backend | JUnit + Mockito + Testcontainers |
+| Testes frontend | Vitest / React Testing Library / Playwright futuramente |
 
 ---
 
 ## Estrutura da documentação
 
 ```txt
-barbearia-saas-docs/
+varthex-barber/
 ├── README.md
+├── CONTRIBUTING.md
 ├── docs/
 │   ├── 00-indice-geral.md
 │   ├── produto/
-│   │   ├── 01-visao-geral.md
-│   │   ├── 02-escopo-do-produto.md
-│   │   ├── 03-perfis-e-permissoes.md
-│   │   ├── 04-requisitos-funcionais.md
-│   │   ├── 05-regras-de-negocio.md
-│   │   ├── 06-requisitos-nao-funcionais.md
-│   │   └── 07-mvp-versoes.md
 │   ├── negocio/
-│   │   ├── 08-monetizacao-saas.md
-│   │   ├── 09-planos-e-limites.md
-│   │   └── 10-metricas-e-dashboards.md
 │   ├── tecnico/
-│   │   ├── 11-arquitetura-tecnica.md
-│   │   ├── 12-modelagem-banco-de-dados.md
-│   │   ├── 13-apis-e-contratos.md
-│   │   ├── 14-seguranca.md
-│   │   ├── 15-notificacoes-filas-e-jobs.md
-│   │   └── 16-devops-deploy.md
 │   ├── telas/
-│   │   ├── 17-mapa-de-telas.md
-│   │   └── 18-fluxos-principais.md
 │   ├── integracoes/
-│   │   ├── 19-whatsapp-crm.md
-│   │   ├── 20-google-agenda.md
-│   │   ├── 21-google-avaliacoes.md
-│   │   └── 22-pagamentos.md
-│   └── roadmap/
-│       ├── 23-passo-a-passo-desenvolvimento.md
-│       ├── 24-cronograma-com-datas.md
-│       └── 25-checklist-entregas.md
+│   ├── roadmap/
+│   └── aprendizado/
 └── .github/
     └── ISSUE_TEMPLATE/
-        ├── bug_report.md
-        ├── feature_request.md
-        └── task.md
 ```
 
 ---
@@ -79,17 +72,29 @@ barbearia-saas-docs/
 1. `docs/00-indice-geral.md`
 2. `docs/produto/01-visao-geral.md`
 3. `docs/produto/02-escopo-do-produto.md`
-4. `docs/roadmap/23-passo-a-passo-desenvolvimento.md`
-5. `docs/roadmap/24-cronograma-com-datas.md`
-6. `docs/tecnico/11-arquitetura-tecnica.md`
-7. `docs/tecnico/12-modelagem-banco-de-dados.md`
-8. `docs/tecnico/13-apis-e-contratos.md`
+4. `docs/tecnico/11-arquitetura-tecnica-java.md`
+5. `docs/aprendizado/26-guia-semana-1-sem-codigo.md`
+6. `docs/aprendizado/27-guia-semana-1-correcao-com-comandos.md`
+7. `docs/roadmap/24-cronograma-com-datas.md`
+
+---
+
+## Regra importante deste repositório
+
+Primeiro o projeto será desenvolvido com foco em aprendizado:
+
+1. entender o que será feito;
+2. estudar a documentação oficial;
+3. montar a estrutura sozinho;
+4. só depois comparar com o guia de correção.
+
+Por isso, a documentação da Semana 1 tem duas partes:
+
+- **guia sem código**, para estudar e tentar fazer sozinho;
+- **guia de correção**, com comandos e estrutura esperada.
 
 ---
 
 ## Data base do cronograma
 
 O cronograma começa em **06/07/2026**.
-
-A documentação foi organizada considerando um desenvolvimento por etapas, ideal para quem ainda está aprendendo e quer construir o sistema com segurança.
-# varthex-barber

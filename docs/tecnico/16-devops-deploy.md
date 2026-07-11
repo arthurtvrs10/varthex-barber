@@ -1,137 +1,54 @@
 # 16 — DevOps e Deploy
 
-## Ambientes
+## Objetivo da Semana 1
 
-O projeto deve ter pelo menos três ambientes.
+Na primeira semana, o objetivo não é fazer deploy em produção.
 
-## Desenvolvimento
+O objetivo é criar uma base local com:
 
-Ambiente local do desenvolvedor.
+- backend Java;
+- frontend Next.js;
+- PostgreSQL;
+- Redis;
+- Docker Compose;
+- variáveis de ambiente;
+- README técnico;
+- documentação no GitHub.
 
-Inclui:
+## Ambiente local esperado
 
-- Backend local.
-- Frontend local.
-- PostgreSQL via Docker.
-- Redis via Docker.
+O projeto futuro deve rodar com Docker Compose.
 
-## Homologação
+Serviços esperados:
 
-Ambiente de testes antes da produção.
+- backend;
+- frontend;
+- postgres;
+- redis.
 
-Inclui:
+## Arquivo .env.example
 
-- Dados de teste.
-- Testes de fluxo.
-- Testes de integração.
+O repositório deve ter um `.env.example` com nomes das variáveis, mas sem segredos reais.
 
-## Produção
+Exemplos de variáveis:
 
-Ambiente usado pelas barbearias reais.
+- DATABASE_URL;
+- POSTGRES_USER;
+- POSTGRES_PASSWORD;
+- POSTGRES_DB;
+- REDIS_HOST;
+- REDIS_PORT;
+- JWT_SECRET;
+- FRONTEND_URL.
 
-Inclui:
+## Critério de aceite técnico
 
-- HTTPS.
-- Banco com backup.
-- Logs.
-- Monitoramento.
-- Variáveis seguras.
+A Semana 1 só estará concluída quando:
 
----
+- o frontend rodar localmente;
+- o backend rodar localmente;
+- o PostgreSQL estiver disponível;
+- o Redis estiver disponível;
+- o repositório estiver no GitHub;
+- a documentação estiver organizada.
 
-## Docker Compose local
-
-Serviços sugeridos:
-
-```yaml
-services:
-  postgres:
-    image: postgres:16
-    environment:
-      POSTGRES_USER: barber
-      POSTGRES_PASSWORD: barber
-      POSTGRES_DB: barber_saas
-    ports:
-      - "5432:5432"
-
-  redis:
-    image: redis:7
-    ports:
-      - "6379:6379"
-```
-
----
-
-## CI/CD
-
-Pipeline sugerido:
-
-1. Instalar dependências.
-2. Rodar lint.
-3. Rodar testes.
-4. Validar build.
-5. Gerar artefato.
-6. Fazer deploy.
-
----
-
-## Variáveis de ambiente
-
-Exemplos:
-
-```env
-DATABASE_URL=
-REDIS_URL=
-JWT_SECRET=
-JWT_REFRESH_SECRET=
-WHATSAPP_PROVIDER_TOKEN=
-GOOGLE_CLIENT_ID=
-GOOGLE_CLIENT_SECRET=
-PAYMENT_PROVIDER_SECRET=
-```
-
----
-
-## Deploy inicial recomendado
-
-Para começar barato:
-
-- Frontend: Vercel ou VPS.
-- Backend: VPS com Docker.
-- Banco: PostgreSQL na VPS ou serviço gerenciado.
-- Redis: VPS ou serviço gerenciado.
-
-Para produção mais profissional:
-
-- Backend em cloud.
-- Banco gerenciado.
-- Redis gerenciado.
-- Monitoramento.
-- Backup automático.
-
----
-
-## Backup
-
-Política inicial:
-
-- Backup diário do PostgreSQL.
-- Manter pelo menos 7 backups recentes.
-- Backup antes de migrações grandes.
-- Testar restauração mensalmente.
-
----
-
-## Monitoramento
-
-Monitorar:
-
-- Erros 500.
-- Lentidão da API.
-- Falhas de envio de WhatsApp.
-- Falhas de login.
-- Uso de disco.
-- Uso de CPU.
-- Uso de memória.
-- Status do banco.
-- Status do Redis.

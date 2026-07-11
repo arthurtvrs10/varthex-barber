@@ -1,100 +1,52 @@
-# 01 — Visão Geral
+# 01 — Visão Geral do Produto
 
-## Nome provisório do projeto
+## Nome do projeto
 
-**Barbearia SaaS**
+**Varthex Barber**
 
-Outras opções de nome:
+## Tipo de sistema
 
-- BarberFlow
-- BarberOS
-- Agenda Barber
-- CorteCloud
-- Tavares Barber
-- NavalhaTech
-- BarberHub
-
----
+Software SaaS para gestão de barbearias.
 
 ## Problema que o sistema resolve
 
-Muitas barbearias ainda gerenciam agendamentos por WhatsApp, papel, planilhas ou memória do dono. Isso gera problemas como:
+Muitas barbearias ainda controlam agenda, clientes, pagamentos, comissões e estoque manualmente pelo WhatsApp, caderno ou planilhas. Isso gera conflitos de horário, perda de clientes, falta de controle financeiro e dificuldade para acompanhar o desempenho dos barbeiros.
 
-- Horários duplicados.
-- Clientes esquecidos.
-- Falta de controle de comissão.
-- Barbeiros sem visão clara da agenda.
-- Dificuldade para saber faturamento diário, semanal e mensal.
-- Estoque sem controle.
-- Cliente sem lembrete para voltar.
-- Dono sem visão real do desempenho da barbearia.
-- Perda de clientes por falta de relacionamento.
-- Atendimento bagunçado em dias cheios.
+O Varthex Barber busca centralizar esses processos em uma plataforma única.
 
-O sistema centraliza tudo em uma plataforma única.
+## Objetivo do sistema
 
----
+Permitir que uma barbearia gerencie:
 
-## Objetivo do produto
-
-Criar um sistema SaaS para barbearias que permita:
-
-- Gerenciar agendamentos.
-- Controlar horários.
-- Organizar barbeiros.
-- Cadastrar clientes.
-- Criar fila de espera.
-- Calcular comissão.
-- Controlar estoque.
-- Automatizar mensagens via WhatsApp.
-- Enviar lembretes.
-- Solicitar avaliações no Google.
-- Criar programa de fidelidade.
-- Vender planos para clientes.
-- Acompanhar dashboards financeiros.
-- Monetizar o sistema por planos, módulos e limites.
-
----
+- agenda;
+- clientes;
+- barbeiros;
+- horários;
+- bloqueios;
+- fila de espera;
+- estoque;
+- comissões;
+- fidelidade;
+- planos;
+- notificações;
+- WhatsApp CRM;
+- dashboards;
+- monetização SaaS.
 
 ## Público-alvo
 
-### Clientes diretos do SaaS
-
 - Donos de barbearia.
-- Gerentes de barbearia.
-- Redes pequenas de barbearias.
-- Barbearias com 1 a 10 barbeiros.
-- Barbearias que usam WhatsApp como principal canal de atendimento.
+- Barbeiros autônomos.
+- Redes de barbearia.
+- Clientes que desejam agendar cortes com facilidade.
 
-### Usuários finais dentro das barbearias
+## Stack técnica definida
 
-- Dono/Admin.
-- Barbeiros.
-- Clientes.
-- Atendentes, caso existam.
+O backend será desenvolvido em **Java com Spring Boot**.
 
----
+O frontend será desenvolvido em **Next.js com TypeScript**.
 
-## Diferenciais esperados
+O banco principal será **PostgreSQL**.
 
-- Sistema simples de usar.
-- Foco em barbearia, não salão genérico.
-- Agenda inteligente.
-- Comissão automática.
-- Fila de espera para dias intensos.
-- CRM via WhatsApp.
-- Lembrete de retorno para cortes.
-- Controle de dispositivos por barbeiro.
-- Monetização modular para o dono do SaaS.
-- Dashboards claros com cards de dia, semana e mês.
+O Redis será usado para cache, filas, jobs, notificações e lembretes.
 
----
-
-## Ideia central
-
-O sistema deve ser simples para a barbearia, mas completo por trás.
-
-O cliente agenda rápido.
-O barbeiro vê sua agenda.
-O dono acompanha dinheiro, comissão, estoque e operação.
-O SuperAdmin vende o sistema para várias barbearias.
