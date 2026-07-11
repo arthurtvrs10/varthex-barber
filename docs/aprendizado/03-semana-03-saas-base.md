@@ -1,110 +1,145 @@
 # Semana 03 — SaaS base
 
 **Período:** 20/07/2026 a 24/07/2026  
-**Entrega:** SuperAdmin, barbearias e isolamento por barbearia.
+**Entrega da semana:** SuperAdmin, barbearias, relação usuário/barbearia e isolamento de dados por barbearia.
 
-## Como usar este arquivo
+> Este arquivo é para você abrir somente na semana correspondente. A ideia é aprender antes de copiar. Primeiro leia a Parte 1 inteira, tente fazer sozinho e só depois use a Parte 2 como correção.
 
-Este arquivo foi feito para ser aberto somente na semana correspondente. A ordem é obrigatória:
+---
 
-1. Leia o **guia prático sem código**.
-2. Tente fazer sozinho.
-3. Registre dúvidas e erros.
-4. Só no final use o **guia com código para correção**.
+# Como usar este arquivo
+
+A ordem correta é:
+
+1. Ler o objetivo da semana.
+2. Entender o problema de negócio.
+3. Estudar os conceitos técnicos indicados.
+4. Abrir as documentações oficiais indicadas em **Onde achar para aplicar**.
+5. Desenhar o fluxo em papel, Excalidraw, Figma ou Markdown.
+6. Tentar implementar sem olhar a correção.
+7. Registrar dúvidas e erros em `docs/diario/semana-03.md`.
+8. Só no final abrir a **Parte 2 — Guia com código/comandos para correção**.
 
 ---
 
 # Parte 1 — Guia prático sem código
 
-## Objetivo da semana
+## 1. Objetivo da semana
 
-Entregar **SaaS base** sem pular o processo de entendimento.
+Nesta semana você deve entregar: **SuperAdmin, barbearias, relação usuário/barbearia e isolamento de dados por barbearia.**
 
-## Critérios de aceite
+O foco não é fazer bonito. O foco é entender o que está sendo construído, por que isso existe no produto e como validar que funcionou.
+
+## 2. Critérios de aceite
+
+Você só considera esta semana concluída quando conseguir provar:
 
 - SuperAdmin cria barbearia.
 - Admin acessa apenas a própria barbearia.
+- Consultas principais respeitam `barbershopId`.
+- Usuário sem vínculo com a barbearia não acessa seus dados.
 
-## Tarefas da semana
+## 3. O que você precisa aprender antes de implementar
 
-- Criar tabela de barbearias.
-- Criar relacionamento usuário/barbearia.
-- Criar SuperAdmin.
-- Criar Admin da barbearia.
-- Aplicar isolamento por barbershopId.
-- Criar tela de listagem de barbearias.
-- Criar tela de criação de barbearia.
+Antes de abrir o editor para codar, estude estes conceitos:
 
-## O que você precisa aprender antes de implementar
+- O que é SaaS multi-tenant.
+- Diferença entre plataforma e barbearia cliente.
+- Por que todo dado operacional precisa estar ligado a uma barbearia.
+- Como evitar vazamento de dados entre empresas.
+- Como validar permissões por perfil e por barbearia.
 
-- SaaS multiempresa.
-- Isolamento por barbearia.
-- Diferença entre SuperAdmin e Admin.
-- Filtro por barbershopId.
-- Evitar vazamento de dados.
+## 4. O que fazer, em ordem, sem código
 
-## Documentação oficial para consultar
+Siga esta ordem. Não pule etapas:
 
-- [Spring Boot — Reference](https://docs.spring.io/spring-boot/reference/index.html)
-- [Spring Data JPA — Reference](https://docs.spring.io/spring-data/jpa/reference/index.html)
-- [PostgreSQL — Documentation](https://www.postgresql.org/docs/)
+1. Criar entidade `Barbershop`.
+2. Criar relação entre usuário e barbearia.
+3. Criar fluxo de criação de barbearia pelo SuperAdmin.
+4. Criar contexto da barbearia atual.
+5. Criar proteção para Admin enxergar apenas a própria barbearia.
+6. Criar telas simples de listagem/criação de barbearia.
 
-## Guia prático sem código
+## 5. Roteiro sugerido por dia
 
-1. Desenhe a relação plataforma → barbearias → usuários.
-2. Defina ações do SuperAdmin e ações do Admin.
-3. Liste consultas que precisam de barbershopId.
-4. Planeje erro para acesso a outra barbearia.
-5. Aplique isolamento antes de criar muitas telas.
+| Dia | Foco |
+|---|---|
+| Segunda | Estudar multi-tenant e desenhar isolamento por barbearia. |
+| Terça | Modelar Barbershop e relação com Users. |
+| Quarta | Criar endpoints do SuperAdmin. |
+| Quinta | Criar regras de isolamento e testes manuais. |
+| Sexta | Criar telas simples e atualizar documentação. |
 
-## Exercício antes de programar
+## 6. Onde achar para conseguir aplicar
 
-Crie ou atualize um arquivo de diário, por exemplo:
+Use esta seção como anexo de estudo. Não precisa ler a documentação inteira. Leia somente a parte indicada em cada linha.
+
+| Tema | Link oficial | O que procurar |
+|---|---|---|
+| Spring Data JPA | <https://docs.spring.io/spring-data/jpa/reference/index.html> | Leia entidades, repositories e query methods. |
+| Spring Security Authorization | <https://docs.spring.io/spring-security/reference/servlet/authorization/index.html> | Veja regras de autorização. |
+| PostgreSQL Foreign Keys | <https://www.postgresql.org/docs/current/tutorial-fk.html> | Entenda relacionamentos. |
+| OWASP Access Control | <https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html> | Use como referência de controle de acesso. |
+
+## 7. Exercício antes de programar
+
+Crie ou atualize este arquivo no seu repositório:
 
 ```txt
 docs/diario/semana-03.md
 ```
 
-Responda:
+Responda antes de implementar:
 
-- O que esta semana entrega para o produto?
-- Quais telas, entidades ou serviços serão impactados?
-- Quais regras podem gerar erro?
-- Quem pode usar essa funcionalidade?
-- Como vou saber que terminei?
+1. O que esta semana entrega para o produto?
+2. Quem usa essa funcionalidade?
+3. Quais dados precisam existir?
+4. Quais regras podem dar erro?
+5. Como vou testar sem depender de tela bonita?
+6. Que documentação oficial eu consultei?
+7. Qual parte ainda ficou confusa?
 
-## Checklist de aprendizado
+## 8. Checklist sem código
+
+Marque apenas quando você realmente entendeu ou fez:
 
 - [ ] Entendi o objetivo da semana.
-- [ ] Consultei a documentação oficial.
-- [ ] Consegui explicar a semana sem olhar código.
-- [ ] Desenhei o fluxo principal.
-- [ ] Tentei implementar antes de olhar a correção.
-- [ ] Registrei meu aprendizado no GitHub.
+- [ ] Entendi o problema de negócio.
+- [ ] Li pelo menos a documentação oficial principal da semana.
+- [ ] Desenhei o fluxo antes de codar.
+- [ ] Sei explicar quais dados serão criados ou alterados.
+- [ ] Sei explicar quais endpoints/telas devem existir.
+- [ ] Sei explicar o critério de aceite.
+- [ ] Tentei implementar antes de abrir a correção.
+- [ ] Registrei dúvidas e erros no diário da semana.
 
-## Erros comuns
+## 9. Erros comuns de iniciante nesta semana
 
-- Começar copiando código sem entender o fluxo.
-- Misturar responsabilidade de Controller, Service e Repository.
-- Criar tela antes de validar regra no backend.
-- Não testar o fluxo completo.
-- Não atualizar a documentação.
+- Começar pelo código sem entender a regra.
+- Criar tela antes de validar o backend.
+- Misturar regra de negócio dentro do Controller.
+- Não validar dados de entrada.
+- Não testar caso de erro.
+- Não registrar decisões na documentação.
+- Copiar a correção antes de tentar fazer sozinho.
 
-## O que registrar no GitHub
+## 10. O que registrar no GitHub ao finalizar
 
-Ao final, registre:
+No final da semana, atualize o diário com:
 
-- resumo do que foi feito;
-- decisões tomadas;
-- dificuldades;
-- comandos úteis;
+- o que foi feito;
+- o que funcionou;
+- o que deu erro;
+- como corrigiu;
+- links de documentação usados;
+- prints ou comandos de validação;
 - pendências para a próxima semana.
 
 ---
 
-# Parte 2 — Guia com código para correção
+# Parte 2 — Guia com código/comandos para correção
 
-> Use esta parte somente depois de tentar fazer a semana sozinho.
+> Use esta parte somente depois de tentar fazer a semana sozinho. A correção não existe para você copiar no início; ela existe para comparar, corrigir e entender o que faltou.
 
 ## Estrutura esperada
 
@@ -115,18 +150,13 @@ backend/src/main/java/com/varthex/barber/
 │   ├── BarbershopController.java
 │   ├── BarbershopService.java
 │   └── BarbershopRepository.java
-└── users/
+└── common/security/
+    └── CurrentUserService.java
 ```
 
-## Comandos de verificação
+## Entidade de referência
 
-```bash
-curl -X GET http://localhost:8080/barbershops   -H "Authorization: Bearer SEU_TOKEN"
-```
-
-## Código ou trecho de referência para correção
-
-```txt
+```java
 @Entity
 @Table(name = "barbershops")
 public class Barbershop {
@@ -138,15 +168,43 @@ public class Barbershop {
     private String name;
 
     @Column(nullable = false)
-    private Boolean active = true;
-}
+    private String phone;
 
-// Todo repository operacional deve filtrar por barbershopId
-List<Client> findByBarbershopId(UUID barbershopId);
+    private String googleReviewUrl;
+
+    @Enumerated(EnumType.STRING)
+    private BarbershopStatus status = BarbershopStatus.ACTIVE;
+}
 ```
 
-## Como validar a correção
+## Regra de isolamento para conferir
 
-- SUPER_ADMIN lista todas as barbearias.
-- ADMIN vê somente a própria barbearia.
-- Cadastros operacionais possuem barbershopId.
+```java
+public Barbershop getMyBarbershop(UUID currentUserId) {
+    User user = userRepository.findById(currentUserId)
+        .orElseThrow(() -> new NotFoundException("Usuário não encontrado"));
+
+    if (user.getRole() == UserRole.SUPER_ADMIN) {
+        throw new BusinessException("SuperAdmin deve informar a barbearia alvo");
+    }
+
+    return user.getBarbershop();
+}
+```
+
+## Validação manual
+
+1. Crie duas barbearias.
+2. Crie um admin para cada uma.
+3. Faça login como Admin A.
+4. Tente buscar dados da Barbearia B.
+5. O backend deve negar ou retornar vazio.
+
+---
+
+# Commit sugerido da semana
+
+```bash
+git add .
+git commit -m "docs: registra aprendizado da semana 03"
+```

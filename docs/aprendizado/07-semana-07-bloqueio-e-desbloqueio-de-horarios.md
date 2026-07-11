@@ -1,145 +1,193 @@
 # Semana 07 — Bloqueio e desbloqueio de horários
 
 **Período:** 17/08/2026 a 21/08/2026  
-**Entrega:** Bloquear e desbloquear horários com motivo.
+**Entrega da semana:** Bloquear/desbloquear horário ou dia inteiro com motivo e impacto na disponibilidade.
 
-## Como usar este arquivo
+> Este arquivo é para você abrir somente na semana correspondente. A ideia é aprender antes de copiar. Primeiro leia a Parte 1 inteira, tente fazer sozinho e só depois use a Parte 2 como correção.
 
-Este arquivo foi feito para ser aberto somente na semana correspondente. A ordem é obrigatória:
+---
 
-1. Leia o **guia prático sem código**.
-2. Tente fazer sozinho.
-3. Registre dúvidas e erros.
-4. Só no final use o **guia com código para correção**.
+# Como usar este arquivo
+
+A ordem correta é:
+
+1. Ler o objetivo da semana.
+2. Entender o problema de negócio.
+3. Estudar os conceitos técnicos indicados.
+4. Abrir as documentações oficiais indicadas em **Onde achar para aplicar**.
+5. Desenhar o fluxo em papel, Excalidraw, Figma ou Markdown.
+6. Tentar implementar sem olhar a correção.
+7. Registrar dúvidas e erros em `docs/diario/semana-07.md`.
+8. Só no final abrir a **Parte 2 — Guia com código/comandos para correção**.
 
 ---
 
 # Parte 1 — Guia prático sem código
 
-## Objetivo da semana
+## 1. Objetivo da semana
 
-Entregar **Bloqueio e desbloqueio de horários** sem pular o processo de entendimento.
+Nesta semana você deve entregar: **Bloquear/desbloquear horário ou dia inteiro com motivo e impacto na disponibilidade.**
 
-## Critérios de aceite
+O foco não é fazer bonito. O foco é entender o que está sendo construído, por que isso existe no produto e como validar que funcionou.
+
+## 2. Critérios de aceite
+
+Você só considera esta semana concluída quando conseguir provar:
 
 - Horário bloqueado não aparece disponível.
+- Bloqueio tem motivo e responsável.
+- Admin consegue desbloquear.
+- Bloqueio de dia inteiro remove todos os slots do dia.
+- Sistema impede bloqueio conflitante sem tratamento.
 
-## Tarefas da semana
+## 3. O que você precisa aprender antes de implementar
 
-- Criar bloqueio de horário.
-- Criar bloqueio de dia inteiro.
-- Criar desbloqueio.
-- Registrar motivo.
-- Mostrar bloqueio na agenda.
+Antes de abrir o editor para codar, estude estes conceitos:
 
-## O que você precisa aprender antes de implementar
+- Bloqueio manual versus indisponibilidade por agenda.
+- Importância do motivo do bloqueio.
+- Como registrar quem fez a ação.
+- Como aplicar bloqueio na consulta de disponibilidade.
 
-- Agendamento versus bloqueio.
-- Bloqueio parcial e dia inteiro.
-- Motivo para auditoria.
-- Bloqueio afeta disponibilidade.
-- Permissão para bloquear.
+## 4. O que fazer, em ordem, sem código
 
-## Documentação oficial para consultar
+Siga esta ordem. Não pule etapas:
 
-- [Spring Boot — Reference](https://docs.spring.io/spring-boot/reference/index.html)
-- [Spring Data JPA — Reference](https://docs.spring.io/spring-data/jpa/reference/index.html)
-- [PostgreSQL — Documentation](https://www.postgresql.org/docs/)
+1. Criar entidade BlockedTime.
+2. Criar endpoint de bloqueio.
+3. Criar endpoint de desbloqueio.
+4. Aplicar bloqueios no cálculo de disponibilidade.
+5. Mostrar bloqueios na tela de agenda.
 
-## Guia prático sem código
+## 5. Roteiro sugerido por dia
 
-1. Liste motivos possíveis.
-2. Defina quem pode bloquear.
-3. Trate conflito com agendamento existente.
-4. Decida se desbloquear apaga ou inativa.
-5. Atualize disponibilidade.
+| Dia | Foco |
+|---|---|
+| Segunda | Desenhar casos de bloqueio. |
+| Terça | Modelar BlockedTime. |
+| Quarta | Criar endpoints. |
+| Quinta | Integrar com disponibilidade. |
+| Sexta | Testar bloqueio parcial e dia inteiro. |
 
-## Exercício antes de programar
+## 6. Onde achar para conseguir aplicar
 
-Crie ou atualize um arquivo de diário, por exemplo:
+Use esta seção como anexo de estudo. Não precisa ler a documentação inteira. Leia somente a parte indicada em cada linha.
+
+| Tema | Link oficial | O que procurar |
+|---|---|---|
+| Spring Data JPA | <https://docs.spring.io/spring-data/jpa/reference/index.html> | Veja queries por intervalo. |
+| Java Time API | <https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/package-summary.html> | Use LocalDateTime e LocalDate. |
+| PostgreSQL Date/Time | <https://www.postgresql.org/docs/current/datatype-datetime.html> | Entenda armazenamento de datas. |
+
+## 7. Exercício antes de programar
+
+Crie ou atualize este arquivo no seu repositório:
 
 ```txt
 docs/diario/semana-07.md
 ```
 
-Responda:
+Responda antes de implementar:
 
-- O que esta semana entrega para o produto?
-- Quais telas, entidades ou serviços serão impactados?
-- Quais regras podem gerar erro?
-- Quem pode usar essa funcionalidade?
-- Como vou saber que terminei?
+1. O que esta semana entrega para o produto?
+2. Quem usa essa funcionalidade?
+3. Quais dados precisam existir?
+4. Quais regras podem dar erro?
+5. Como vou testar sem depender de tela bonita?
+6. Que documentação oficial eu consultei?
+7. Qual parte ainda ficou confusa?
 
-## Checklist de aprendizado
+## 8. Checklist sem código
+
+Marque apenas quando você realmente entendeu ou fez:
 
 - [ ] Entendi o objetivo da semana.
-- [ ] Consultei a documentação oficial.
-- [ ] Consegui explicar a semana sem olhar código.
-- [ ] Desenhei o fluxo principal.
-- [ ] Tentei implementar antes de olhar a correção.
-- [ ] Registrei meu aprendizado no GitHub.
+- [ ] Entendi o problema de negócio.
+- [ ] Li pelo menos a documentação oficial principal da semana.
+- [ ] Desenhei o fluxo antes de codar.
+- [ ] Sei explicar quais dados serão criados ou alterados.
+- [ ] Sei explicar quais endpoints/telas devem existir.
+- [ ] Sei explicar o critério de aceite.
+- [ ] Tentei implementar antes de abrir a correção.
+- [ ] Registrei dúvidas e erros no diário da semana.
 
-## Erros comuns
+## 9. Erros comuns de iniciante nesta semana
 
-- Começar copiando código sem entender o fluxo.
-- Misturar responsabilidade de Controller, Service e Repository.
-- Criar tela antes de validar regra no backend.
-- Não testar o fluxo completo.
-- Não atualizar a documentação.
+- Começar pelo código sem entender a regra.
+- Criar tela antes de validar o backend.
+- Misturar regra de negócio dentro do Controller.
+- Não validar dados de entrada.
+- Não testar caso de erro.
+- Não registrar decisões na documentação.
+- Copiar a correção antes de tentar fazer sozinho.
 
-## O que registrar no GitHub
+## 10. O que registrar no GitHub ao finalizar
 
-Ao final, registre:
+No final da semana, atualize o diário com:
 
-- resumo do que foi feito;
-- decisões tomadas;
-- dificuldades;
-- comandos úteis;
+- o que foi feito;
+- o que funcionou;
+- o que deu erro;
+- como corrigiu;
+- links de documentação usados;
+- prints ou comandos de validação;
 - pendências para a próxima semana.
 
 ---
 
-# Parte 2 — Guia com código para correção
+# Parte 2 — Guia com código/comandos para correção
 
-> Use esta parte somente depois de tentar fazer a semana sozinho.
+> Use esta parte somente depois de tentar fazer a semana sozinho. A correção não existe para você copiar no início; ela existe para comparar, corrigir e entender o que faltou.
 
-## Estrutura esperada
+## Entidade de referência
 
-```txt
-backend/src/main/java/com/varthex/barber/
-└── blocks/
-    ├── TimeBlock.java
-    ├── TimeBlockController.java
-    ├── TimeBlockService.java
-    └── TimeBlockRepository.java
-```
-
-## Comandos de verificação
-
-```bash
-curl -X POST http://localhost:8080/time-blocks   -H "Authorization: Bearer SEU_TOKEN"   -H "Content-Type: application/json"   -d '{"barberId":"ID","startAt":"2026-08-17T12:00:00","endAt":"2026-08-17T13:00:00","reason":"Almoço"}' 
-```
-
-## Código ou trecho de referência para correção
-
-```txt
+```java
 @Entity
-@Table(name = "time_blocks")
-public class TimeBlock {
+@Table(name = "blocked_times")
+public class BlockedTime {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    private UUID barberId;
-    private LocalDateTime startAt;
-    private LocalDateTime endAt;
+
+    @ManyToOne(optional = false)
+    private Barbershop barbershop;
+
+    @ManyToOne
+    private Barber barber;
+
+    private LocalDateTime startsAt;
+    private LocalDateTime endsAt;
+
+    @Column(nullable = false)
     private String reason;
-    private Boolean active = true;
+
+    @Column(nullable = false)
+    private UUID createdBy;
 }
 ```
 
-## Como validar a correção
+## Regra esperada
 
-- Bloqueio aparece na agenda.
-- Horário bloqueado some da disponibilidade.
-- Desbloqueio libera horário se não houver conflito.
-- Motivo fica registrado.
+```java
+if (slotStart.isBefore(blockedEnd) && slotEnd.isAfter(blockedStart)) {
+    // existe sobreposição
+    removeSlot(slotStart);
+}
+```
+
+## Validação manual
+
+1. Bloqueie 14:00 às 15:00.
+2. Consulte disponibilidade.
+3. O horário 14:00 não deve aparecer.
+4. Desbloqueie.
+5. Consulte novamente.
+
+---
+
+# Commit sugerido da semana
+
+```bash
+git add .
+git commit -m "docs: registra aprendizado da semana 07"
+```

@@ -1,143 +1,189 @@
 # Semana 16 — Monetização SaaS
 
 **Período:** 19/10/2026 a 23/10/2026  
-**Entrega:** Planos SaaS, limites, módulos pagos e dispositivos.
+**Entrega da semana:** Planos SaaS, limites, módulos pagos, dispositivos e bloqueio por inadimplência.
 
-## Como usar este arquivo
+> Este arquivo é para você abrir somente na semana correspondente. A ideia é aprender antes de copiar. Primeiro leia a Parte 1 inteira, tente fazer sozinho e só depois use a Parte 2 como correção.
 
-Este arquivo foi feito para ser aberto somente na semana correspondente. A ordem é obrigatória:
+---
 
-1. Leia o **guia prático sem código**.
-2. Tente fazer sozinho.
-3. Registre dúvidas e erros.
-4. Só no final use o **guia com código para correção**.
+# Como usar este arquivo
+
+A ordem correta é:
+
+1. Ler o objetivo da semana.
+2. Entender o problema de negócio.
+3. Estudar os conceitos técnicos indicados.
+4. Abrir as documentações oficiais indicadas em **Onde achar para aplicar**.
+5. Desenhar o fluxo em papel, Excalidraw, Figma ou Markdown.
+6. Tentar implementar sem olhar a correção.
+7. Registrar dúvidas e erros em `docs/diario/semana-16.md`.
+8. Só no final abrir a **Parte 2 — Guia com código/comandos para correção**.
 
 ---
 
 # Parte 1 — Guia prático sem código
 
-## Objetivo da semana
+## 1. Objetivo da semana
 
-Entregar **Monetização SaaS** sem pular o processo de entendimento.
+Nesta semana você deve entregar: **Planos SaaS, limites, módulos pagos, dispositivos e bloqueio por inadimplência.**
 
-## Critérios de aceite
+O foco não é fazer bonito. O foco é entender o que está sendo construído, por que isso existe no produto e como validar que funcionou.
+
+## 2. Critérios de aceite
+
+Você só considera esta semana concluída quando conseguir provar:
 
 - SuperAdmin controla o que cada barbearia pode usar.
+- Plano limita quantidade de barbeiros/dispositivos/módulos.
+- Recurso pago pode ser ativado/desativado.
+- Sistema bloqueia uso acima do limite.
+- Inadimplência pode limitar a barbearia.
 
-## Tarefas da semana
+## 3. O que você precisa aprender antes de implementar
 
-- Criar planos SaaS.
-- Criar limites por plano.
-- Criar módulos pagos.
-- Criar controle de dispositivos.
-- Criar cobrança manual.
-- Criar bloqueio por inadimplência.
+Antes de abrir o editor para codar, estude estes conceitos:
 
-## O que você precisa aprender antes de implementar
+- Diferença entre plano, assinatura, recurso e limite.
+- Feature flag.
+- Quota de uso.
+- Controle de dispositivos.
+- Como aplicar limite sem espalhar if por todo o sistema.
 
-- Plano da plataforma versus plano do cliente final.
-- Feature flag por plano.
-- Limite de barbeiros/dispositivos.
-- Módulo pago adicional.
-- Inadimplência.
+## 4. O que fazer, em ordem, sem código
 
-## Documentação oficial para consultar
+Siga esta ordem. Não pule etapas:
 
-- [Spring Boot — Reference](https://docs.spring.io/spring-boot/reference/index.html)
-- [Spring Data JPA — Reference](https://docs.spring.io/spring-data/jpa/reference/index.html)
-- [PostgreSQL — Documentation](https://www.postgresql.org/docs/)
+1. Criar SaaSPlan.
+2. Criar Feature.
+3. Criar BarbershopSubscription.
+4. Criar limite de barbeiros.
+5. Criar limite de dispositivos.
+6. Criar guard/check de recurso.
+7. Criar painel simples do SuperAdmin.
 
-## Guia prático sem código
+## 5. Roteiro sugerido por dia
 
-1. Liste planos SaaS.
-2. Defina limites claros.
-3. Separe módulos pagos.
-4. Crie controle de dispositivos.
-5. Comece com cobrança manual.
+| Dia | Foco |
+|---|---|
+| Segunda | Desenhar planos e recursos. |
+| Terça | Modelar assinatura. |
+| Quarta | Criar limites. |
+| Quinta | Criar controle de dispositivos. |
+| Sexta | Testar bloqueios e documentar monetização. |
 
-## Exercício antes de programar
+## 6. Onde achar para conseguir aplicar
 
-Crie ou atualize um arquivo de diário, por exemplo:
+Use esta seção como anexo de estudo. Não precisa ler a documentação inteira. Leia somente a parte indicada em cada linha.
+
+| Tema | Link oficial | O que procurar |
+|---|---|---|
+| Spring Security Authorization | <https://docs.spring.io/spring-security/reference/servlet/authorization/index.html> | Veja autorização por regra. |
+| Spring Data JPA | <https://docs.spring.io/spring-data/jpa/reference/index.html> | Use relacionamentos entre plano e barbearia. |
+| OWASP Access Control | <https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html> | Evite bypass de autorização. |
+
+## 7. Exercício antes de programar
+
+Crie ou atualize este arquivo no seu repositório:
 
 ```txt
 docs/diario/semana-16.md
 ```
 
-Responda:
+Responda antes de implementar:
 
-- O que esta semana entrega para o produto?
-- Quais telas, entidades ou serviços serão impactados?
-- Quais regras podem gerar erro?
-- Quem pode usar essa funcionalidade?
-- Como vou saber que terminei?
+1. O que esta semana entrega para o produto?
+2. Quem usa essa funcionalidade?
+3. Quais dados precisam existir?
+4. Quais regras podem dar erro?
+5. Como vou testar sem depender de tela bonita?
+6. Que documentação oficial eu consultei?
+7. Qual parte ainda ficou confusa?
 
-## Checklist de aprendizado
+## 8. Checklist sem código
+
+Marque apenas quando você realmente entendeu ou fez:
 
 - [ ] Entendi o objetivo da semana.
-- [ ] Consultei a documentação oficial.
-- [ ] Consegui explicar a semana sem olhar código.
-- [ ] Desenhei o fluxo principal.
-- [ ] Tentei implementar antes de olhar a correção.
-- [ ] Registrei meu aprendizado no GitHub.
+- [ ] Entendi o problema de negócio.
+- [ ] Li pelo menos a documentação oficial principal da semana.
+- [ ] Desenhei o fluxo antes de codar.
+- [ ] Sei explicar quais dados serão criados ou alterados.
+- [ ] Sei explicar quais endpoints/telas devem existir.
+- [ ] Sei explicar o critério de aceite.
+- [ ] Tentei implementar antes de abrir a correção.
+- [ ] Registrei dúvidas e erros no diário da semana.
 
-## Erros comuns
+## 9. Erros comuns de iniciante nesta semana
 
-- Começar copiando código sem entender o fluxo.
-- Misturar responsabilidade de Controller, Service e Repository.
-- Criar tela antes de validar regra no backend.
-- Não testar o fluxo completo.
-- Não atualizar a documentação.
+- Começar pelo código sem entender a regra.
+- Criar tela antes de validar o backend.
+- Misturar regra de negócio dentro do Controller.
+- Não validar dados de entrada.
+- Não testar caso de erro.
+- Não registrar decisões na documentação.
+- Copiar a correção antes de tentar fazer sozinho.
 
-## O que registrar no GitHub
+## 10. O que registrar no GitHub ao finalizar
 
-Ao final, registre:
+No final da semana, atualize o diário com:
 
-- resumo do que foi feito;
-- decisões tomadas;
-- dificuldades;
-- comandos úteis;
+- o que foi feito;
+- o que funcionou;
+- o que deu erro;
+- como corrigiu;
+- links de documentação usados;
+- prints ou comandos de validação;
 - pendências para a próxima semana.
 
 ---
 
-# Parte 2 — Guia com código para correção
+# Parte 2 — Guia com código/comandos para correção
 
-> Use esta parte somente depois de tentar fazer a semana sozinho.
+> Use esta parte somente depois de tentar fazer a semana sozinho. A correção não existe para você copiar no início; ela existe para comparar, corrigir e entender o que faltou.
 
-## Estrutura esperada
+## Modelo de plano
 
-```txt
-backend/src/main/java/com/varthex/barber/
-├── saas/
-├── subscriptions/
-└── devices/
-```
+```java
+@Entity
+@Table(name = "saas_plans")
+public class SaaSPlan {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
-## Comandos de verificação
-
-```bash
-curl http://localhost:8080/saas/plans   -H "Authorization: Bearer TOKEN_SUPER_ADMIN"
-```
-
-## Código ou trecho de referência para correção
-
-```txt
-public record SaaSPlanResponse(
-    String name,
-    BigDecimal monthlyPrice,
-    Integer maxBarbers,
-    Integer maxDevicesPerBarber,
-    boolean whatsappCrmEnabled
-) {}
-
-if (currentBarbers >= plan.getMaxBarbers()) {
-    throw new BusinessException("Limite de barbeiros atingido para este plano.");
+    private String name;
+    private BigDecimal monthlyPrice;
+    private Integer maxBarbers;
+    private Integer maxDevicesPerBarber;
+    private boolean whatsappCrmEnabled;
+    private boolean googleCalendarEnabled;
+    private boolean advancedDashboardEnabled;
 }
 ```
 
-## Como validar a correção
+## Checagem de limite
 
-- SuperAdmin cria plano.
-- Barbearia respeita limite de barbeiros.
-- Dispositivo extra é bloqueado.
-- Módulo não contratado não aparece.
+```java
+public void assertCanCreateBarber(UUID barbershopId) {
+    int current = barberRepository.countByBarbershopId(barbershopId);
+    SaaSPlan plan = subscriptionService.getActivePlan(barbershopId);
+
+    if (current >= plan.getMaxBarbers()) {
+        throw new BusinessException("Limite de barbeiros atingido para o plano atual");
+    }
+}
+```
+
+## Correção importante
+
+Centralize regras de plano em um serviço, por exemplo `PlanGuardService`, para não espalhar regras em todos os Controllers.
+
+---
+
+# Commit sugerido da semana
+
+```bash
+git add .
+git commit -m "docs: registra aprendizado da semana 16"
+```

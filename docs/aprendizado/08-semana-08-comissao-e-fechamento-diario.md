@@ -1,141 +1,191 @@
 # Semana 08 — Comissão e fechamento diário
 
 **Período:** 24/08/2026 a 28/08/2026  
-**Entrega:** Comissão simples, cards do dia e fechamento diário.
+**Entrega da semana:** Regra de comissão simples, geração após atendimento concluído, cards do dia e fechamento diário.
 
-## Como usar este arquivo
+> Este arquivo é para você abrir somente na semana correspondente. A ideia é aprender antes de copiar. Primeiro leia a Parte 1 inteira, tente fazer sozinho e só depois use a Parte 2 como correção.
 
-Este arquivo foi feito para ser aberto somente na semana correspondente. A ordem é obrigatória:
+---
 
-1. Leia o **guia prático sem código**.
-2. Tente fazer sozinho.
-3. Registre dúvidas e erros.
-4. Só no final use o **guia com código para correção**.
+# Como usar este arquivo
+
+A ordem correta é:
+
+1. Ler o objetivo da semana.
+2. Entender o problema de negócio.
+3. Estudar os conceitos técnicos indicados.
+4. Abrir as documentações oficiais indicadas em **Onde achar para aplicar**.
+5. Desenhar o fluxo em papel, Excalidraw, Figma ou Markdown.
+6. Tentar implementar sem olhar a correção.
+7. Registrar dúvidas e erros em `docs/diario/semana-08.md`.
+8. Só no final abrir a **Parte 2 — Guia com código/comandos para correção**.
 
 ---
 
 # Parte 1 — Guia prático sem código
 
-## Objetivo da semana
+## 1. Objetivo da semana
 
-Entregar **Comissão e fechamento diário** sem pular o processo de entendimento.
+Nesta semana você deve entregar: **Regra de comissão simples, geração após atendimento concluído, cards do dia e fechamento diário.**
 
-## Critérios de aceite
+O foco não é fazer bonito. O foco é entender o que está sendo construído, por que isso existe no produto e como validar que funcionou.
+
+## 2. Critérios de aceite
+
+Você só considera esta semana concluída quando conseguir provar:
 
 - Atendimento concluído gera comissão.
 - Dashboard mostra valores do dia.
+- Comissão pode variar por barbeiro.
+- Fechamento diário soma serviços e produtos quando existirem.
+- Comissão não é duplicada se concluir o mesmo atendimento duas vezes.
 
-## Tarefas da semana
+## 3. O que você precisa aprender antes de implementar
 
-- Criar regra de comissão simples.
-- Gerar comissão após conclusão.
-- Criar tela de comissão.
-- Criar fechamento diário.
-- Criar cards do dia.
+Antes de abrir o editor para codar, estude estes conceitos:
 
-## O que você precisa aprender antes de implementar
+- Diferença entre faturamento bruto, comissão e líquido estimado.
+- Percentual versus valor fixo.
+- Quando gerar comissão.
+- Como evitar duplicidade.
+- Como calcular período diário.
 
-- Faturamento bruto e comissão.
-- Comissão percentual e fixa.
-- Momento de gerar comissão.
-- Fechamento diário.
-- Evitar comissão duplicada.
+## 4. O que fazer, em ordem, sem código
 
-## Documentação oficial para consultar
+Siga esta ordem. Não pule etapas:
 
-- [Spring Boot — Reference](https://docs.spring.io/spring-boot/reference/index.html)
-- [Spring Data JPA — Reference](https://docs.spring.io/spring-data/jpa/reference/index.html)
-- [PostgreSQL — Documentation](https://www.postgresql.org/docs/)
+1. Adicionar comissão padrão por barbeiro.
+2. Criar entidade Commission.
+3. Gerar comissão ao concluir atendimento.
+4. Criar endpoint de fechamento diário.
+5. Criar cards simples no frontend.
 
-## Guia prático sem código
+## 5. Roteiro sugerido por dia
 
-1. Defina comissão padrão por barbeiro.
-2. Decida se comissão usa valor do serviço ou pago.
-3. Gere comissão apenas ao concluir atendimento.
-4. Planeje cards do dia.
-5. Separe comissão de dashboard.
+| Dia | Foco |
+|---|---|
+| Segunda | Estudar regra de comissão. |
+| Terça | Modelar Commission. |
+| Quarta | Integrar com conclusão de atendimento. |
+| Quinta | Criar fechamento diário. |
+| Sexta | Testar valores e documentar exemplos. |
 
-## Exercício antes de programar
+## 6. Onde achar para conseguir aplicar
 
-Crie ou atualize um arquivo de diário, por exemplo:
+Use esta seção como anexo de estudo. Não precisa ler a documentação inteira. Leia somente a parte indicada em cada linha.
+
+| Tema | Link oficial | O que procurar |
+|---|---|---|
+| BigDecimal Java | <https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigDecimal.html> | Use BigDecimal para dinheiro. |
+| Spring Transactions | <https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative.html> | Use @Transactional ao concluir atendimento. |
+| PostgreSQL Aggregate Functions | <https://www.postgresql.org/docs/current/functions-aggregate.html> | Veja sum, count e group by. |
+
+## 7. Exercício antes de programar
+
+Crie ou atualize este arquivo no seu repositório:
 
 ```txt
 docs/diario/semana-08.md
 ```
 
-Responda:
+Responda antes de implementar:
 
-- O que esta semana entrega para o produto?
-- Quais telas, entidades ou serviços serão impactados?
-- Quais regras podem gerar erro?
-- Quem pode usar essa funcionalidade?
-- Como vou saber que terminei?
+1. O que esta semana entrega para o produto?
+2. Quem usa essa funcionalidade?
+3. Quais dados precisam existir?
+4. Quais regras podem dar erro?
+5. Como vou testar sem depender de tela bonita?
+6. Que documentação oficial eu consultei?
+7. Qual parte ainda ficou confusa?
 
-## Checklist de aprendizado
+## 8. Checklist sem código
+
+Marque apenas quando você realmente entendeu ou fez:
 
 - [ ] Entendi o objetivo da semana.
-- [ ] Consultei a documentação oficial.
-- [ ] Consegui explicar a semana sem olhar código.
-- [ ] Desenhei o fluxo principal.
-- [ ] Tentei implementar antes de olhar a correção.
-- [ ] Registrei meu aprendizado no GitHub.
+- [ ] Entendi o problema de negócio.
+- [ ] Li pelo menos a documentação oficial principal da semana.
+- [ ] Desenhei o fluxo antes de codar.
+- [ ] Sei explicar quais dados serão criados ou alterados.
+- [ ] Sei explicar quais endpoints/telas devem existir.
+- [ ] Sei explicar o critério de aceite.
+- [ ] Tentei implementar antes de abrir a correção.
+- [ ] Registrei dúvidas e erros no diário da semana.
 
-## Erros comuns
+## 9. Erros comuns de iniciante nesta semana
 
-- Começar copiando código sem entender o fluxo.
-- Misturar responsabilidade de Controller, Service e Repository.
-- Criar tela antes de validar regra no backend.
-- Não testar o fluxo completo.
-- Não atualizar a documentação.
+- Começar pelo código sem entender a regra.
+- Criar tela antes de validar o backend.
+- Misturar regra de negócio dentro do Controller.
+- Não validar dados de entrada.
+- Não testar caso de erro.
+- Não registrar decisões na documentação.
+- Copiar a correção antes de tentar fazer sozinho.
 
-## O que registrar no GitHub
+## 10. O que registrar no GitHub ao finalizar
 
-Ao final, registre:
+No final da semana, atualize o diário com:
 
-- resumo do que foi feito;
-- decisões tomadas;
-- dificuldades;
-- comandos úteis;
+- o que foi feito;
+- o que funcionou;
+- o que deu erro;
+- como corrigiu;
+- links de documentação usados;
+- prints ou comandos de validação;
 - pendências para a próxima semana.
 
 ---
 
-# Parte 2 — Guia com código para correção
+# Parte 2 — Guia com código/comandos para correção
 
-> Use esta parte somente depois de tentar fazer a semana sozinho.
+> Use esta parte somente depois de tentar fazer a semana sozinho. A correção não existe para você copiar no início; ela existe para comparar, corrigir e entender o que faltou.
 
-## Estrutura esperada
+## Entidade Commission
 
-```txt
-backend/src/main/java/com/varthex/barber/
-├── commissions/
-└── dashboard/
+```java
+@Entity
+@Table(name = "commissions")
+public class Commission {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @OneToOne(optional = false)
+    private Appointment appointment;
+
+    @ManyToOne(optional = false)
+    private Barber barber;
+
+    private BigDecimal grossAmount;
+    private BigDecimal percentage;
+    private BigDecimal commissionAmount;
+    private boolean paid;
+}
 ```
 
-## Comandos de verificação
+## Cálculo de referência
+
+```java
+BigDecimal commission = grossAmount
+    .multiply(percentage)
+    .divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
+```
+
+## Correção importante
+
+Antes de gerar comissão, confira se já existe comissão para o appointment.
+
+```java
+if (commissionRepository.existsByAppointmentId(appointmentId)) {
+    return;
+}
+```
+
+---
+
+# Commit sugerido da semana
 
 ```bash
-curl http://localhost:8080/dashboard/daily?date=2026-08-24   -H "Authorization: Bearer SEU_TOKEN"
+git add .
+git commit -m "docs: registra aprendizado da semana 08"
 ```
-
-## Código ou trecho de referência para correção
-
-```txt
-BigDecimal commissionValue = servicePrice
-    .multiply(commissionPercentage)
-    .divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
-
-public record DailyDashboardResponse(
-    BigDecimal grossRevenue,
-    BigDecimal totalCommissions,
-    Long completedAppointments,
-    BigDecimal averageTicket
-) {}
-```
-
-## Como validar a correção
-
-- Concluir atendimento gera comissão.
-- Não duplica comissão.
-- Dashboard soma somente o dia.
-- Comissão aparece por barbeiro.

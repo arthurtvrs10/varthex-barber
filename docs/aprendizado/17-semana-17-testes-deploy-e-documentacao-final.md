@@ -1,158 +1,212 @@
 # Semana 17 — Testes, deploy e documentação final
 
 **Período:** 26/10/2026 a 30/10/2026  
-**Entrega:** Correções, revisão, deploy e documentação final de uso.
+**Entrega da semana:** Correções, revisão, testes, deploy e documentação final de uso.
 
-## Como usar este arquivo
+> Este arquivo é para você abrir somente na semana correspondente. A ideia é aprender antes de copiar. Primeiro leia a Parte 1 inteira, tente fazer sozinho e só depois use a Parte 2 como correção.
 
-Este arquivo foi feito para ser aberto somente na semana correspondente. A ordem é obrigatória:
+---
 
-1. Leia o **guia prático sem código**.
-2. Tente fazer sozinho.
-3. Registre dúvidas e erros.
-4. Só no final use o **guia com código para correção**.
+# Como usar este arquivo
+
+A ordem correta é:
+
+1. Ler o objetivo da semana.
+2. Entender o problema de negócio.
+3. Estudar os conceitos técnicos indicados.
+4. Abrir as documentações oficiais indicadas em **Onde achar para aplicar**.
+5. Desenhar o fluxo em papel, Excalidraw, Figma ou Markdown.
+6. Tentar implementar sem olhar a correção.
+7. Registrar dúvidas e erros em `docs/diario/semana-17.md`.
+8. Só no final abrir a **Parte 2 — Guia com código/comandos para correção**.
 
 ---
 
 # Parte 1 — Guia prático sem código
 
-## Objetivo da semana
+## 1. Objetivo da semana
 
-Entregar **Testes, deploy e documentação final** sem pular o processo de entendimento.
+Nesta semana você deve entregar: **Correções, revisão, testes, deploy e documentação final de uso.**
 
-## Critérios de aceite
+O foco não é fazer bonito. O foco é entender o que está sendo construído, por que isso existe no produto e como validar que funcionou.
+
+## 2. Critérios de aceite
+
+Você só considera esta semana concluída quando conseguir provar:
 
 - Sistema pronto para piloto.
+- Fluxos principais foram testados.
+- Permissões foram verificadas.
+- Deploy está documentado.
+- README e docs explicam uso, ambiente e próximas fases.
 
-## Tarefas da semana
+## 3. O que você precisa aprender antes de implementar
 
-- Testar fluxos principais.
-- Testar permissões.
-- Testar agenda.
-- Testar comissão.
-- Testar fila.
-- Corrigir bugs.
-- Configurar deploy.
-- Criar documentação final de uso.
+Antes de abrir o editor para codar, estude estes conceitos:
 
-## O que você precisa aprender antes de implementar
+- Tipos de teste: unitário, integração e manual.
+- Como testar API com Spring Boot Test.
+- Como testar banco com Testcontainers ou banco de teste.
+- Como criar checklist de release.
+- Como documentar deploy e variáveis de ambiente.
 
-- Teste unitário e integração.
-- Local versus produção.
-- Variáveis de ambiente.
-- Logs.
-- Checklist de piloto.
+## 4. O que fazer, em ordem, sem código
 
-## Documentação oficial para consultar
+Siga esta ordem. Não pule etapas:
 
-- [Spring Boot — Reference](https://docs.spring.io/spring-boot/reference/index.html)
-- [Docker Compose — Docs](https://docs.docker.com/compose/)
-- [GitHub Docs — Get started](https://docs.github.com/en/get-started)
-- [Next.js — Docs](https://nextjs.org/docs)
+1. Testar login e permissões.
+2. Testar agenda e conflitos.
+3. Testar comissão e dashboard.
+4. Testar fila e recorrência.
+5. Corrigir bugs.
+6. Criar documentação final de uso.
+7. Criar guia de deploy.
 
-## Guia prático sem código
+## 5. Roteiro sugerido por dia
 
-1. Liste fluxos críticos.
-2. Teste perfis diferentes.
-3. Crie checklist de bugs.
-4. Documente como subir do zero.
-5. Piloto só quando outra pessoa conseguir seguir o README.
+| Dia | Foco |
+|---|---|
+| Segunda | Montar plano de testes. |
+| Terça | Testar backend. |
+| Quarta | Testar frontend e fluxos. |
+| Quinta | Preparar deploy e variáveis. |
+| Sexta | Revisar documentação e fechar piloto. |
 
-## Exercício antes de programar
+## 6. Onde achar para conseguir aplicar
 
-Crie ou atualize um arquivo de diário, por exemplo:
+Use esta seção como anexo de estudo. Não precisa ler a documentação inteira. Leia somente a parte indicada em cada linha.
+
+| Tema | Link oficial | O que procurar |
+|---|---|---|
+| Spring Boot Testing | <https://docs.spring.io/spring-boot/reference/testing/index.html> | Veja testes no Spring Boot. |
+| JUnit 5 User Guide | <https://junit.org/junit5/docs/current/user-guide/> | Veja estrutura de testes. |
+| Testcontainers Java | <https://java.testcontainers.org/> | Use para testes com PostgreSQL/Redis. |
+| Docker Compose | <https://docs.docker.com/compose/> | Veja execução e logs. |
+| GitHub Actions | <https://docs.github.com/en/actions> | Veja CI/CD. |
+| Next.js Deployment | <https://nextjs.org/docs/app/getting-started/deploying> | Veja deploy do frontend. |
+
+## 7. Exercício antes de programar
+
+Crie ou atualize este arquivo no seu repositório:
 
 ```txt
 docs/diario/semana-17.md
 ```
 
-Responda:
+Responda antes de implementar:
 
-- O que esta semana entrega para o produto?
-- Quais telas, entidades ou serviços serão impactados?
-- Quais regras podem gerar erro?
-- Quem pode usar essa funcionalidade?
-- Como vou saber que terminei?
+1. O que esta semana entrega para o produto?
+2. Quem usa essa funcionalidade?
+3. Quais dados precisam existir?
+4. Quais regras podem dar erro?
+5. Como vou testar sem depender de tela bonita?
+6. Que documentação oficial eu consultei?
+7. Qual parte ainda ficou confusa?
 
-## Checklist de aprendizado
+## 8. Checklist sem código
+
+Marque apenas quando você realmente entendeu ou fez:
 
 - [ ] Entendi o objetivo da semana.
-- [ ] Consultei a documentação oficial.
-- [ ] Consegui explicar a semana sem olhar código.
-- [ ] Desenhei o fluxo principal.
-- [ ] Tentei implementar antes de olhar a correção.
-- [ ] Registrei meu aprendizado no GitHub.
+- [ ] Entendi o problema de negócio.
+- [ ] Li pelo menos a documentação oficial principal da semana.
+- [ ] Desenhei o fluxo antes de codar.
+- [ ] Sei explicar quais dados serão criados ou alterados.
+- [ ] Sei explicar quais endpoints/telas devem existir.
+- [ ] Sei explicar o critério de aceite.
+- [ ] Tentei implementar antes de abrir a correção.
+- [ ] Registrei dúvidas e erros no diário da semana.
 
-## Erros comuns
+## 9. Erros comuns de iniciante nesta semana
 
-- Começar copiando código sem entender o fluxo.
-- Misturar responsabilidade de Controller, Service e Repository.
-- Criar tela antes de validar regra no backend.
-- Não testar o fluxo completo.
-- Não atualizar a documentação.
+- Começar pelo código sem entender a regra.
+- Criar tela antes de validar o backend.
+- Misturar regra de negócio dentro do Controller.
+- Não validar dados de entrada.
+- Não testar caso de erro.
+- Não registrar decisões na documentação.
+- Copiar a correção antes de tentar fazer sozinho.
 
-## O que registrar no GitHub
+## 10. O que registrar no GitHub ao finalizar
 
-Ao final, registre:
+No final da semana, atualize o diário com:
 
-- resumo do que foi feito;
-- decisões tomadas;
-- dificuldades;
-- comandos úteis;
+- o que foi feito;
+- o que funcionou;
+- o que deu erro;
+- como corrigiu;
+- links de documentação usados;
+- prints ou comandos de validação;
 - pendências para a próxima semana.
 
 ---
 
-# Parte 2 — Guia com código para correção
+# Parte 2 — Guia com código/comandos para correção
 
-> Use esta parte somente depois de tentar fazer a semana sozinho.
+> Use esta parte somente depois de tentar fazer a semana sozinho. A correção não existe para você copiar no início; ela existe para comparar, corrigir e entender o que faltou.
 
-## Estrutura esperada
+## Teste unitário de referência
 
-```txt
-docs/
-├── manual-do-usuario.md
-├── guia-de-deploy.md
-├── checklist-piloto.md
-└── troubleshooting.md
-```
-
-## Comandos de verificação
-
-```bash
-docker compose down
-docker compose up -d --build
-docker compose logs -f backend
-
-git status
-git add .
-git commit -m "docs: finaliza guia de piloto do sistema"
-```
-
-## Código ou trecho de referência para correção
-
-```txt
+```java
 @SpringBootTest
-class HealthCheckTest {
+class HealthControllerTest {
+    @Autowired
+    private TestRestTemplate restTemplate;
+
     @Test
-    void contextLoads() {
+    void shouldReturnHealthOk() {
+        ResponseEntity<String> response = restTemplate.getForEntity("/health", String.class);
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 }
-
-# checklist-piloto.md
-- [ ] Admin consegue logar
-- [ ] Admin cria serviço
-- [ ] Admin cria barbeiro
-- [ ] Admin cria cliente
-- [ ] Admin cria agendamento
-- [ ] Atendimento concluído gera comissão
-- [ ] Dashboard mostra fechamento do dia
 ```
 
-## Como validar a correção
+## Checklist de release
 
-- Fluxos principais testados.
-- README atualizado.
-- Guia de deploy criado.
-- Problemas conhecidos documentados.
-- Versão de piloto marcada no GitHub.
+```md
+# Checklist de piloto
+
+- [ ] Login testado
+- [ ] Permissões testadas
+- [ ] Agenda testada
+- [ ] Conflito de horário testado
+- [ ] Comissão testada
+- [ ] Dashboard testado
+- [ ] Fila de espera testada
+- [ ] Backup documentado
+- [ ] Variáveis de ambiente documentadas
+- [ ] Deploy documentado
+```
+
+## GitHub Actions mínimo para correção
+
+```yaml
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Test backend
+        working-directory: backend
+        run: ./mvnw test
+```
+
+---
+
+# Commit sugerido da semana
+
+```bash
+git add .
+git commit -m "docs: registra aprendizado da semana 17"
+```

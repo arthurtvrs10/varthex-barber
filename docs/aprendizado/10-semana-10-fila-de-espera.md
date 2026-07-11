@@ -1,150 +1,198 @@
 # Semana 10 — Fila de espera
 
 **Período:** 07/09/2026 a 11/09/2026  
-**Entrega:** Entrada na fila, oferta de vaga e aceite/recusa.
+**Entrega da semana:** Entrada na fila, visualização pelo Admin, oferta de vaga, aceite, recusa e passagem para o próximo.
 
-## Como usar este arquivo
+> Este arquivo é para você abrir somente na semana correspondente. A ideia é aprender antes de copiar. Primeiro leia a Parte 1 inteira, tente fazer sozinho e só depois use a Parte 2 como correção.
 
-Este arquivo foi feito para ser aberto somente na semana correspondente. A ordem é obrigatória:
+---
 
-1. Leia o **guia prático sem código**.
-2. Tente fazer sozinho.
-3. Registre dúvidas e erros.
-4. Só no final use o **guia com código para correção**.
+# Como usar este arquivo
+
+A ordem correta é:
+
+1. Ler o objetivo da semana.
+2. Entender o problema de negócio.
+3. Estudar os conceitos técnicos indicados.
+4. Abrir as documentações oficiais indicadas em **Onde achar para aplicar**.
+5. Desenhar o fluxo em papel, Excalidraw, Figma ou Markdown.
+6. Tentar implementar sem olhar a correção.
+7. Registrar dúvidas e erros em `docs/diario/semana-10.md`.
+8. Só no final abrir a **Parte 2 — Guia com código/comandos para correção**.
 
 ---
 
 # Parte 1 — Guia prático sem código
 
-## Objetivo da semana
+## 1. Objetivo da semana
 
-Entregar **Fila de espera** sem pular o processo de entendimento.
+Nesta semana você deve entregar: **Entrada na fila, visualização pelo Admin, oferta de vaga, aceite, recusa e passagem para o próximo.**
 
-## Critérios de aceite
+O foco não é fazer bonito. O foco é entender o que está sendo construído, por que isso existe no produto e como validar que funcionou.
+
+## 2. Critérios de aceite
+
+Você só considera esta semana concluída quando conseguir provar:
 
 - Vaga cancelada pode ser oferecida para cliente da fila.
+- Fila respeita ordem de entrada, salvo prioridade manual do Admin.
+- Cliente pode aceitar ou recusar vaga.
+- Vaga oferecida tem prazo de resposta.
+- Dois clientes não conseguem aceitar a mesma vaga.
 
-## Tarefas da semana
+## 3. O que você precisa aprender antes de implementar
 
-- Criar fila.
-- Cliente entra na fila.
-- Admin visualiza fila.
-- Oferecer vaga.
-- Aceitar vaga.
-- Recusar vaga.
-- Passar para próximo.
+Antes de abrir o editor para codar, estude estes conceitos:
 
-## O que você precisa aprender antes de implementar
+- Como fila funciona em negócio real.
+- Status de fila.
+- Prioridade versus ordem.
+- Concorrência na aceitação da vaga.
+- Como notificar sem duplicar.
 
-- Ordem de entrada.
-- Preferência de barbeiro/serviço/período.
-- Tempo limite.
-- Evitar duplo aceite.
-- Status da fila.
+## 4. O que fazer, em ordem, sem código
 
-## Documentação oficial para consultar
+Siga esta ordem. Não pule etapas:
 
-- [Spring Boot — Reference](https://docs.spring.io/spring-boot/reference/index.html)
-- [Spring Data JPA — Reference](https://docs.spring.io/spring-data/jpa/reference/index.html)
-- [PostgreSQL — Documentation](https://www.postgresql.org/docs/)
-- [Redis — Docs](https://redis.io/docs/latest/)
+1. Criar entidade WaitlistEntry.
+2. Criar entrada na fila.
+3. Criar listagem por data/barbeiro/serviço.
+4. Criar oferta de vaga.
+5. Criar aceite/recusa.
+6. Integrar com cancelamento de agendamento.
 
-## Guia prático sem código
+## 5. Roteiro sugerido por dia
 
-1. Desenhe o fluxo da fila.
-2. Defina status.
-3. Comece manual antes de automático.
-4. Evite complexidade antes da fila funcionar.
-5. Registre ofertas.
+| Dia | Foco |
+|---|---|
+| Segunda | Desenhar fluxo da fila. |
+| Terça | Modelar entidade e status. |
+| Quarta | Criar endpoints. |
+| Quinta | Integrar com cancelamento e notificação. |
+| Sexta | Testar concorrência e prioridade. |
 
-## Exercício antes de programar
+## 6. Onde achar para conseguir aplicar
 
-Crie ou atualize um arquivo de diário, por exemplo:
+Use esta seção como anexo de estudo. Não precisa ler a documentação inteira. Leia somente a parte indicada em cada linha.
+
+| Tema | Link oficial | O que procurar |
+|---|---|---|
+| Spring Transactions | <https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative.html> | Use transação no aceite. |
+| PostgreSQL Locks | <https://www.postgresql.org/docs/current/explicit-locking.html> | Entenda controle de concorrência. |
+| Spring Data Redis | <https://docs.spring.io/spring-data/redis/reference/> | Opcional para expiração de oferta. |
+| Redis Expiration | <https://redis.io/docs/latest/commands/expire/> | Veja TTL para oferta temporária. |
+
+## 7. Exercício antes de programar
+
+Crie ou atualize este arquivo no seu repositório:
 
 ```txt
 docs/diario/semana-10.md
 ```
 
-Responda:
+Responda antes de implementar:
 
-- O que esta semana entrega para o produto?
-- Quais telas, entidades ou serviços serão impactados?
-- Quais regras podem gerar erro?
-- Quem pode usar essa funcionalidade?
-- Como vou saber que terminei?
+1. O que esta semana entrega para o produto?
+2. Quem usa essa funcionalidade?
+3. Quais dados precisam existir?
+4. Quais regras podem dar erro?
+5. Como vou testar sem depender de tela bonita?
+6. Que documentação oficial eu consultei?
+7. Qual parte ainda ficou confusa?
 
-## Checklist de aprendizado
+## 8. Checklist sem código
+
+Marque apenas quando você realmente entendeu ou fez:
 
 - [ ] Entendi o objetivo da semana.
-- [ ] Consultei a documentação oficial.
-- [ ] Consegui explicar a semana sem olhar código.
-- [ ] Desenhei o fluxo principal.
-- [ ] Tentei implementar antes de olhar a correção.
-- [ ] Registrei meu aprendizado no GitHub.
+- [ ] Entendi o problema de negócio.
+- [ ] Li pelo menos a documentação oficial principal da semana.
+- [ ] Desenhei o fluxo antes de codar.
+- [ ] Sei explicar quais dados serão criados ou alterados.
+- [ ] Sei explicar quais endpoints/telas devem existir.
+- [ ] Sei explicar o critério de aceite.
+- [ ] Tentei implementar antes de abrir a correção.
+- [ ] Registrei dúvidas e erros no diário da semana.
 
-## Erros comuns
+## 9. Erros comuns de iniciante nesta semana
 
-- Começar copiando código sem entender o fluxo.
-- Misturar responsabilidade de Controller, Service e Repository.
-- Criar tela antes de validar regra no backend.
-- Não testar o fluxo completo.
-- Não atualizar a documentação.
+- Começar pelo código sem entender a regra.
+- Criar tela antes de validar o backend.
+- Misturar regra de negócio dentro do Controller.
+- Não validar dados de entrada.
+- Não testar caso de erro.
+- Não registrar decisões na documentação.
+- Copiar a correção antes de tentar fazer sozinho.
 
-## O que registrar no GitHub
+## 10. O que registrar no GitHub ao finalizar
 
-Ao final, registre:
+No final da semana, atualize o diário com:
 
-- resumo do que foi feito;
-- decisões tomadas;
-- dificuldades;
-- comandos úteis;
+- o que foi feito;
+- o que funcionou;
+- o que deu erro;
+- como corrigiu;
+- links de documentação usados;
+- prints ou comandos de validação;
 - pendências para a próxima semana.
 
 ---
 
-# Parte 2 — Guia com código para correção
+# Parte 2 — Guia com código/comandos para correção
 
-> Use esta parte somente depois de tentar fazer a semana sozinho.
+> Use esta parte somente depois de tentar fazer a semana sozinho. A correção não existe para você copiar no início; ela existe para comparar, corrigir e entender o que faltou.
 
-## Estrutura esperada
+## Status da fila
 
-```txt
-backend/src/main/java/com/varthex/barber/
-└── waitlist/
-    ├── WaitlistEntry.java
-    ├── WaitlistStatus.java
-    ├── WaitlistController.java
-    └── WaitlistService.java
-```
-
-## Comandos de verificação
-
-```bash
-curl -X POST http://localhost:8080/waitlist   -H "Authorization: Bearer SEU_TOKEN"   -H "Content-Type: application/json"   -d '{"clientId":"ID","barberId":"ID","serviceId":"ID","desiredDate":"2026-09-07","preferredPeriod":"AFTERNOON"}' 
-```
-
-## Código ou trecho de referência para correção
-
-```txt
+```java
 public enum WaitlistStatus {
     WAITING,
     OFFERED,
     ACCEPTED,
     DECLINED,
     EXPIRED,
-    CANCELED
+    CANCELLED
 }
-
-// Ao aceitar vaga:
-// 1. Verificar se horário ainda está disponível
-// 2. Criar agendamento
-// 3. Marcar entrada como ACCEPTED
-// 4. Expirar outras ofertas do mesmo horário
 ```
 
-## Como validar a correção
+## Entidade de referência
 
-- Cliente entra na fila.
-- Admin vê posição.
-- Vaga cancelada pode ser oferecida.
-- Só um cliente aceita a vaga.
+```java
+@Entity
+@Table(name = "waitlist_entries")
+public class WaitlistEntry {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @ManyToOne(optional = false)
+    private Client client;
+
+    @ManyToOne(optional = false)
+    private Barbershop barbershop;
+
+    private UUID preferredBarberId;
+    private UUID preferredServiceId;
+    private LocalDate desiredDate;
+    private String preferredPeriod;
+
+    @Enumerated(EnumType.STRING)
+    private WaitlistStatus status;
+
+    private LocalDateTime createdAt;
+    private LocalDateTime offeredUntil;
+}
+```
+
+## Regra de aceite
+
+No aceite, revalide se o horário ainda está disponível antes de criar agendamento.
+
+---
+
+# Commit sugerido da semana
+
+```bash
+git add .
+git commit -m "docs: registra aprendizado da semana 10"
+```

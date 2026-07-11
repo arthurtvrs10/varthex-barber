@@ -1,144 +1,177 @@
 # Semana 11 — Agendamento recorrente
 
 **Período:** 14/09/2026 a 18/09/2026  
-**Entrega:** Recorrência semanal, quinzenal e mensal.
+**Entrega da semana:** Recorrência semanal, quinzenal e mensal, geração de horários futuros, conflito, pausa e cancelamento.
 
-## Como usar este arquivo
+> Este arquivo é para você abrir somente na semana correspondente. A ideia é aprender antes de copiar. Primeiro leia a Parte 1 inteira, tente fazer sozinho e só depois use a Parte 2 como correção.
 
-Este arquivo foi feito para ser aberto somente na semana correspondente. A ordem é obrigatória:
+---
 
-1. Leia o **guia prático sem código**.
-2. Tente fazer sozinho.
-3. Registre dúvidas e erros.
-4. Só no final use o **guia com código para correção**.
+# Como usar este arquivo
+
+A ordem correta é:
+
+1. Ler o objetivo da semana.
+2. Entender o problema de negócio.
+3. Estudar os conceitos técnicos indicados.
+4. Abrir as documentações oficiais indicadas em **Onde achar para aplicar**.
+5. Desenhar o fluxo em papel, Excalidraw, Figma ou Markdown.
+6. Tentar implementar sem olhar a correção.
+7. Registrar dúvidas e erros em `docs/diario/semana-11.md`.
+8. Só no final abrir a **Parte 2 — Guia com código/comandos para correção**.
 
 ---
 
 # Parte 1 — Guia prático sem código
 
-## Objetivo da semana
+## 1. Objetivo da semana
 
-Entregar **Agendamento recorrente** sem pular o processo de entendimento.
+Nesta semana você deve entregar: **Recorrência semanal, quinzenal e mensal, geração de horários futuros, conflito, pausa e cancelamento.**
 
-## Critérios de aceite
+O foco não é fazer bonito. O foco é entender o que está sendo construído, por que isso existe no produto e como validar que funcionou.
+
+## 2. Critérios de aceite
+
+Você só considera esta semana concluída quando conseguir provar:
 
 - Cliente fixo pode ter horários recorrentes.
+- Sistema gera próximos horários respeitando conflitos.
+- Recorrência pode ser pausada.
+- Recorrência pode ser cancelada.
+- Conflitos são relatados para o Admin.
 
-## Tarefas da semana
+## 3. O que você precisa aprender antes de implementar
 
-- Criar recorrência semanal.
-- Criar recorrência quinzenal.
-- Criar recorrência mensal.
-- Criar geração dos horários futuros.
-- Verificar conflito.
-- Pausar e cancelar recorrência.
+Antes de abrir o editor para codar, estude estes conceitos:
 
-## O que você precisa aprender antes de implementar
+- Diferença entre regra de recorrência e agendamento gerado.
+- Recorrência semanal, quinzenal e mensal.
+- Como tratar feriado, bloqueio e conflito.
+- Como pausar sem apagar histórico.
+- Como evitar geração duplicada.
 
-- Regra de recorrência versus agendamentos gerados.
-- Próximas datas.
-- Conflito futuro.
-- Pausar sem perder histórico.
-- Evitar gerar muitos horários.
+## 4. O que fazer, em ordem, sem código
 
-## Documentação oficial para consultar
+Siga esta ordem. Não pule etapas:
 
-- [Java 21 — JDK Documentation](https://docs.oracle.com/en/java/javase/21/)
-- [Spring Boot — Reference](https://docs.spring.io/spring-boot/reference/index.html)
-- [PostgreSQL — Documentation](https://www.postgresql.org/docs/)
+1. Criar entidade RecurringAppointment.
+2. Criar regras de frequência.
+3. Criar geração de appointments futuros.
+4. Criar validação de conflito.
+5. Criar pausa/cancelamento.
+6. Criar tela para clientes fixos.
 
-## Guia prático sem código
+## 5. Roteiro sugerido por dia
 
-1. Defina tipos de recorrência.
-2. Decida quantos futuros gerar.
-3. Considere feriados, bloqueios e folgas.
-4. Crie pausar e cancelar.
-5. Marque origem recorrente no agendamento.
+| Dia | Foco |
+|---|---|
+| Segunda | Desenhar exemplos de recorrência. |
+| Terça | Modelar regra. |
+| Quarta | Criar gerador. |
+| Quinta | Tratar conflito e pausa. |
+| Sexta | Testar semanal, quinzenal e mensal. |
 
-## Exercício antes de programar
+## 6. Onde achar para conseguir aplicar
 
-Crie ou atualize um arquivo de diário, por exemplo:
+Use esta seção como anexo de estudo. Não precisa ler a documentação inteira. Leia somente a parte indicada em cada linha.
+
+| Tema | Link oficial | O que procurar |
+|---|---|---|
+| Java Time API | <https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/package-summary.html> | Use plusWeeks, plusMonths e DayOfWeek. |
+| Spring Scheduling | <https://docs.spring.io/spring-framework/reference/integration/scheduling.html> | Veja jobs agendados, se quiser geração automática. |
+| Spring Transactions | <https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative.html> | Use transação ao gerar em lote. |
+
+## 7. Exercício antes de programar
+
+Crie ou atualize este arquivo no seu repositório:
 
 ```txt
 docs/diario/semana-11.md
 ```
 
-Responda:
+Responda antes de implementar:
 
-- O que esta semana entrega para o produto?
-- Quais telas, entidades ou serviços serão impactados?
-- Quais regras podem gerar erro?
-- Quem pode usar essa funcionalidade?
-- Como vou saber que terminei?
+1. O que esta semana entrega para o produto?
+2. Quem usa essa funcionalidade?
+3. Quais dados precisam existir?
+4. Quais regras podem dar erro?
+5. Como vou testar sem depender de tela bonita?
+6. Que documentação oficial eu consultei?
+7. Qual parte ainda ficou confusa?
 
-## Checklist de aprendizado
+## 8. Checklist sem código
+
+Marque apenas quando você realmente entendeu ou fez:
 
 - [ ] Entendi o objetivo da semana.
-- [ ] Consultei a documentação oficial.
-- [ ] Consegui explicar a semana sem olhar código.
-- [ ] Desenhei o fluxo principal.
-- [ ] Tentei implementar antes de olhar a correção.
-- [ ] Registrei meu aprendizado no GitHub.
+- [ ] Entendi o problema de negócio.
+- [ ] Li pelo menos a documentação oficial principal da semana.
+- [ ] Desenhei o fluxo antes de codar.
+- [ ] Sei explicar quais dados serão criados ou alterados.
+- [ ] Sei explicar quais endpoints/telas devem existir.
+- [ ] Sei explicar o critério de aceite.
+- [ ] Tentei implementar antes de abrir a correção.
+- [ ] Registrei dúvidas e erros no diário da semana.
 
-## Erros comuns
+## 9. Erros comuns de iniciante nesta semana
 
-- Começar copiando código sem entender o fluxo.
-- Misturar responsabilidade de Controller, Service e Repository.
-- Criar tela antes de validar regra no backend.
-- Não testar o fluxo completo.
-- Não atualizar a documentação.
+- Começar pelo código sem entender a regra.
+- Criar tela antes de validar o backend.
+- Misturar regra de negócio dentro do Controller.
+- Não validar dados de entrada.
+- Não testar caso de erro.
+- Não registrar decisões na documentação.
+- Copiar a correção antes de tentar fazer sozinho.
 
-## O que registrar no GitHub
+## 10. O que registrar no GitHub ao finalizar
 
-Ao final, registre:
+No final da semana, atualize o diário com:
 
-- resumo do que foi feito;
-- decisões tomadas;
-- dificuldades;
-- comandos úteis;
+- o que foi feito;
+- o que funcionou;
+- o que deu erro;
+- como corrigiu;
+- links de documentação usados;
+- prints ou comandos de validação;
 - pendências para a próxima semana.
 
 ---
 
-# Parte 2 — Guia com código para correção
+# Parte 2 — Guia com código/comandos para correção
 
-> Use esta parte somente depois de tentar fazer a semana sozinho.
+> Use esta parte somente depois de tentar fazer a semana sozinho. A correção não existe para você copiar no início; ela existe para comparar, corrigir e entender o que faltou.
 
-## Estrutura esperada
+## Frequência de referência
 
-```txt
-backend/src/main/java/com/varthex/barber/
-└── recurrence/
-    ├── RecurringAppointment.java
-    ├── RecurrenceType.java
-    └── RecurrenceService.java
-```
-
-## Comandos de verificação
-
-```bash
-curl -X POST http://localhost:8080/recurrences   -H "Authorization: Bearer SEU_TOKEN"   -H "Content-Type: application/json"   -d '{"clientId":"ID","barberId":"ID","serviceId":"ID","startDate":"2026-09-14","time":"18:00","type":"BIWEEKLY"}' 
-```
-
-## Código ou trecho de referência para correção
-
-```txt
-public enum RecurrenceType {
+```java
+public enum RecurrenceFrequency {
     WEEKLY,
     BIWEEKLY,
     MONTHLY
 }
-
-LocalDate nextDate = switch (type) {
-    case WEEKLY -> current.plusWeeks(1);
-    case BIWEEKLY -> current.plusWeeks(2);
-    case MONTHLY -> current.plusMonths(1);
-};
 ```
 
-## Como validar a correção
+## Geração simples
 
-- Recorrência cria horários futuros.
-- Conflitos são avisados.
-- Pausar impede novas gerações.
-- Cancelar não apaga histórico.
+```java
+public LocalDate nextDate(LocalDate current, RecurrenceFrequency frequency) {
+    return switch (frequency) {
+        case WEEKLY -> current.plusWeeks(1);
+        case BIWEEKLY -> current.plusWeeks(2);
+        case MONTHLY -> current.plusMonths(1);
+    };
+}
+```
+
+## Regra de correção
+
+Não gere agendamentos se houver conflito. Registre o conflito para o Admin decidir manualmente.
+
+---
+
+# Commit sugerido da semana
+
+```bash
+git add .
+git commit -m "docs: registra aprendizado da semana 11"
+```

@@ -1,138 +1,196 @@
 # Semana 14 — Notificações e WhatsApp básico
 
 **Período:** 05/10/2026 a 09/10/2026  
-**Entrega:** Notificações internas e mensagens de confirmação/lembrete.
+**Entrega da semana:** Notificações internas, templates, fila de mensagens, confirmação, cancelamento e lembrete.
 
-## Como usar este arquivo
+> Este arquivo é para você abrir somente na semana correspondente. A ideia é aprender antes de copiar. Primeiro leia a Parte 1 inteira, tente fazer sozinho e só depois use a Parte 2 como correção.
 
-Este arquivo foi feito para ser aberto somente na semana correspondente. A ordem é obrigatória:
+---
 
-1. Leia o **guia prático sem código**.
-2. Tente fazer sozinho.
-3. Registre dúvidas e erros.
-4. Só no final use o **guia com código para correção**.
+# Como usar este arquivo
+
+A ordem correta é:
+
+1. Ler o objetivo da semana.
+2. Entender o problema de negócio.
+3. Estudar os conceitos técnicos indicados.
+4. Abrir as documentações oficiais indicadas em **Onde achar para aplicar**.
+5. Desenhar o fluxo em papel, Excalidraw, Figma ou Markdown.
+6. Tentar implementar sem olhar a correção.
+7. Registrar dúvidas e erros em `docs/diario/semana-14.md`.
+8. Só no final abrir a **Parte 2 — Guia com código/comandos para correção**.
 
 ---
 
 # Parte 1 — Guia prático sem código
 
-## Objetivo da semana
+## 1. Objetivo da semana
 
-Entregar **Notificações e WhatsApp básico** sem pular o processo de entendimento.
+Nesta semana você deve entregar: **Notificações internas, templates, fila de mensagens, confirmação, cancelamento e lembrete.**
 
-## Critérios de aceite
+O foco não é fazer bonito. O foco é entender o que está sendo construído, por que isso existe no produto e como validar que funcionou.
+
+## 2. Critérios de aceite
+
+Você só considera esta semana concluída quando conseguir provar:
 
 - Eventos importantes geram notificação.
+- Mensagem usa template.
+- Envio externo fica desacoplado da regra principal.
+- Sistema evita envio duplicado.
+- Lembrete pode ser processado em segundo plano.
 
-## Tarefas da semana
+## 3. O que você precisa aprender antes de implementar
 
-- Criar notificações internas.
-- Criar templates.
-- Criar fila de mensagens.
-- Enviar confirmação.
-- Enviar cancelamento.
-- Enviar lembrete.
+Antes de abrir o editor para codar, estude estes conceitos:
 
-## O que você precisa aprender antes de implementar
-
-- Evento de domínio.
+- Diferença entre notificação interna e externa.
+- Outbox pattern.
 - Template de mensagem.
-- Fila assíncrona.
-- Notificação interna versus WhatsApp real.
-- Evitar envio duplicado.
+- Fila/job assíncrono.
+- Por que não chamar WhatsApp direto dentro da criação do agendamento.
 
-## Documentação oficial para consultar
+## 4. O que fazer, em ordem, sem código
 
-- [Spring Boot — Reference](https://docs.spring.io/spring-boot/reference/index.html)
-- [Redis — Docs](https://redis.io/docs/latest/)
+Siga esta ordem. Não pule etapas:
 
-## Guia prático sem código
+1. Criar Notification.
+2. Criar MessageTemplate.
+3. Criar NotificationOutbox.
+4. Gerar notificação ao criar/cancelar agendamento.
+5. Criar job de lembrete.
+6. Deixar WhatsApp como integração preparada, sem depender de token real.
 
-1. Comece por notificações internas.
-2. Defina templates.
-3. Crie registro de mensagem com status.
-4. Use fila para não travar agendamento.
-5. Deixe WhatsApp real para quando tiver provedor/token.
+## 5. Roteiro sugerido por dia
 
-## Exercício antes de programar
+| Dia | Foco |
+|---|---|
+| Segunda | Desenhar eventos que disparam mensagens. |
+| Terça | Modelar templates. |
+| Quarta | Criar outbox. |
+| Quinta | Criar job/processamento. |
+| Sexta | Testar sem WhatsApp real. |
 
-Crie ou atualize um arquivo de diário, por exemplo:
+## 6. Onde achar para conseguir aplicar
+
+Use esta seção como anexo de estudo. Não precisa ler a documentação inteira. Leia somente a parte indicada em cada linha.
+
+| Tema | Link oficial | O que procurar |
+|---|---|---|
+| Spring Scheduling | <https://docs.spring.io/spring-framework/reference/integration/scheduling.html> | Veja @Scheduled. |
+| Spring Data Redis | <https://docs.spring.io/spring-data/redis/reference/> | Use Redis para fila/cache se necessário. |
+| Redis Docs | <https://redis.io/docs/latest/> | Entenda filas e estruturas. |
+| WhatsApp Business Platform Docs | <https://developers.facebook.com/docs/whatsapp> | Documentação oficial para integração futura. |
+
+## 7. Exercício antes de programar
+
+Crie ou atualize este arquivo no seu repositório:
 
 ```txt
 docs/diario/semana-14.md
 ```
 
-Responda:
+Responda antes de implementar:
 
-- O que esta semana entrega para o produto?
-- Quais telas, entidades ou serviços serão impactados?
-- Quais regras podem gerar erro?
-- Quem pode usar essa funcionalidade?
-- Como vou saber que terminei?
+1. O que esta semana entrega para o produto?
+2. Quem usa essa funcionalidade?
+3. Quais dados precisam existir?
+4. Quais regras podem dar erro?
+5. Como vou testar sem depender de tela bonita?
+6. Que documentação oficial eu consultei?
+7. Qual parte ainda ficou confusa?
 
-## Checklist de aprendizado
+## 8. Checklist sem código
+
+Marque apenas quando você realmente entendeu ou fez:
 
 - [ ] Entendi o objetivo da semana.
-- [ ] Consultei a documentação oficial.
-- [ ] Consegui explicar a semana sem olhar código.
-- [ ] Desenhei o fluxo principal.
-- [ ] Tentei implementar antes de olhar a correção.
-- [ ] Registrei meu aprendizado no GitHub.
+- [ ] Entendi o problema de negócio.
+- [ ] Li pelo menos a documentação oficial principal da semana.
+- [ ] Desenhei o fluxo antes de codar.
+- [ ] Sei explicar quais dados serão criados ou alterados.
+- [ ] Sei explicar quais endpoints/telas devem existir.
+- [ ] Sei explicar o critério de aceite.
+- [ ] Tentei implementar antes de abrir a correção.
+- [ ] Registrei dúvidas e erros no diário da semana.
 
-## Erros comuns
+## 9. Erros comuns de iniciante nesta semana
 
-- Começar copiando código sem entender o fluxo.
-- Misturar responsabilidade de Controller, Service e Repository.
-- Criar tela antes de validar regra no backend.
-- Não testar o fluxo completo.
-- Não atualizar a documentação.
+- Começar pelo código sem entender a regra.
+- Criar tela antes de validar o backend.
+- Misturar regra de negócio dentro do Controller.
+- Não validar dados de entrada.
+- Não testar caso de erro.
+- Não registrar decisões na documentação.
+- Copiar a correção antes de tentar fazer sozinho.
 
-## O que registrar no GitHub
+## 10. O que registrar no GitHub ao finalizar
 
-Ao final, registre:
+No final da semana, atualize o diário com:
 
-- resumo do que foi feito;
-- decisões tomadas;
-- dificuldades;
-- comandos úteis;
+- o que foi feito;
+- o que funcionou;
+- o que deu erro;
+- como corrigiu;
+- links de documentação usados;
+- prints ou comandos de validação;
 - pendências para a próxima semana.
 
 ---
 
-# Parte 2 — Guia com código para correção
+# Parte 2 — Guia com código/comandos para correção
 
-> Use esta parte somente depois de tentar fazer a semana sozinho.
+> Use esta parte somente depois de tentar fazer a semana sozinho. A correção não existe para você copiar no início; ela existe para comparar, corrigir e entender o que faltou.
 
-## Estrutura esperada
+## Outbox de referência
 
-```txt
-backend/src/main/java/com/varthex/barber/
-├── notifications/
-└── messaging/
-```
-
-## Comandos de verificação
-
-```bash
-curl http://localhost:8080/notifications   -H "Authorization: Bearer SEU_TOKEN"
-```
-
-## Código ou trecho de referência para correção
-
-```txt
-public enum MessageStatus {
+```java
+public enum NotificationStatus {
     PENDING,
     SENT,
     FAILED,
-    CANCELED
+    CANCELLED
 }
-
-String template = "Olá, {{clientName}}! Seu horário com {{barberName}} foi confirmado para {{date}} às {{time}}.";
 ```
 
-## Como validar a correção
+```java
+@Entity
+@Table(name = "notification_outbox")
+public class NotificationOutbox {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
-- Criar agendamento gera notificação.
-- Cancelar gera notificação.
-- Lembrete pode ser agendado.
-- Falha fica registrada.
+    private String channel; // INTERNAL, WHATSAPP, EMAIL
+    private String recipient;
+    private String message;
+
+    @Enumerated(EnumType.STRING)
+    private NotificationStatus status;
+
+    private LocalDateTime scheduledTo;
+    private LocalDateTime sentAt;
+}
+```
+
+## Job de correção
+
+```java
+@Scheduled(fixedDelay = 30000)
+public void processPendingNotifications() {
+    // buscar pendentes
+    // enviar ou simular envio
+    // marcar como SENT ou FAILED
+}
+```
+
+Regra: primeiro salvar o agendamento, depois criar mensagem pendente. Não misture os dois fluxos.
+
+---
+
+# Commit sugerido da semana
+
+```bash
+git add .
+git commit -m "docs: registra aprendizado da semana 14"
+```
