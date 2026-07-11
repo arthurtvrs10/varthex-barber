@@ -1,191 +1,406 @@
 # Semana 08 — Comissão e fechamento diário
 
 **Período:** 24/08/2026 a 28/08/2026  
-**Entrega da semana:** Regra de comissão simples, geração após atendimento concluído, cards do dia e fechamento diário.
-
-> Este arquivo é para você abrir somente na semana correspondente. A ideia é aprender antes de copiar. Primeiro leia a Parte 1 inteira, tente fazer sozinho e só depois use a Parte 2 como correção.
-
----
-
-# Como usar este arquivo
-
-A ordem correta é:
-
-1. Ler o objetivo da semana.
-2. Entender o problema de negócio.
-3. Estudar os conceitos técnicos indicados.
-4. Abrir as documentações oficiais indicadas em **Onde achar para aplicar**.
-5. Desenhar o fluxo em papel, Excalidraw, Figma ou Markdown.
-6. Tentar implementar sem olhar a correção.
-7. Registrar dúvidas e erros em `docs/diario/semana-08.md`.
-8. Só no final abrir a **Parte 2 — Guia com código/comandos para correção**.
+**Entrega:** Comissão simples, cards do dia e fechamento diário.  
+**Stack do projeto:** Java 21 + Spring Boot + Spring Security + Spring Data JPA + PostgreSQL + Redis + Next.js + Docker Compose.
 
 ---
 
-# Parte 1 — Guia prático sem código
+## Como usar este arquivo
+
+Este arquivo foi feito para você abrir **somente na semana correspondente**.
+
+A ordem é obrigatória:
+
+1. Leia a **Parte 1 — Guia prático sem código**.
+2. Entenda o problema de negócio.
+3. Faça a análise de requisitos.
+4. Desenhe os fluxos e regras.
+5. Consulte as documentações oficiais indicadas.
+6. Tente implementar sozinho.
+7. Só no final use a **Parte 2 — Correção com código/comandos**.
+
+> A regra principal é: **não comece pelo código**. Primeiro entenda por que a funcionalidade existe e o que ela precisa resolver.
+
+---
+
+# PARTE 1 — Guia prático sem código
 
 ## 1. Objetivo da semana
 
-Nesta semana você deve entregar: **Regra de comissão simples, geração após atendimento concluído, cards do dia e fechamento diário.**
+Comissão simples, cards do dia e fechamento diário.
 
-O foco não é fazer bonito. O foco é entender o que está sendo construído, por que isso existe no produto e como validar que funcionou.
+O objetivo não é apenas "fazer funcionar". O objetivo é entender **por que essa parte existe no software**, quais decisões precisam ser tomadas e como validar se a entrega está correta.
 
-## 2. Critérios de aceite
+---
 
-Você só considera esta semana concluída quando conseguir provar:
+## 2. Por que esta semana é necessária?
 
-- Atendimento concluído gera comissão.
-- Dashboard mostra valores do dia.
-- Comissão pode variar por barbeiro.
-- Fechamento diário soma serviços e produtos quando existirem.
-- Comissão não é duplicada se concluir o mesmo atendimento duas vezes.
+Conecta atendimento concluído com resultado financeiro.
 
-## 3. O que você precisa aprender antes de implementar
+### Problema de negócio
 
-Antes de abrir o editor para codar, estude estes conceitos:
+O dono precisa saber quanto entrou e quanto deve pagar a cada barbeiro. Sem comissão automática, o controle financeiro vira planilha manual.
 
-- Diferença entre faturamento bruto, comissão e líquido estimado.
-- Percentual versus valor fixo.
-- Quando gerar comissão.
-- Como evitar duplicidade.
-- Como calcular período diário.
+### Consequência de não fazer direito
 
-## 4. O que fazer, em ordem, sem código
+Se esta semana for feita sem análise, o sistema pode ficar com regras confusas, dados duplicados, telas que não fecham o fluxo real da barbearia e código difícil de corrigir nas próximas semanas.
 
-Siga esta ordem. Não pule etapas:
+---
 
-1. Adicionar comissão padrão por barbeiro.
-2. Criar entidade Commission.
-3. Gerar comissão ao concluir atendimento.
-4. Criar endpoint de fechamento diário.
-5. Criar cards simples no frontend.
+## 3. Quem usa ou é impactado?
 
-## 5. Roteiro sugerido por dia
+- Admin/Dono
+- Barbeiro
 
-| Dia | Foco |
-|---|---|
-| Segunda | Estudar regra de comissão. |
-| Terça | Modelar Commission. |
-| Quarta | Integrar com conclusão de atendimento. |
-| Quinta | Criar fechamento diário. |
-| Sexta | Testar valores e documentar exemplos. |
+Para cada ator, responda no seu diário:
+
+- O que essa pessoa precisa fazer?
+- O que essa pessoa não pode fazer?
+- Qual erro prejudicaria mais essa pessoa?
+- Qual informação precisa aparecer na tela?
+- Qual informação precisa ser protegida?
+
+---
+
+## 4. Escopo da semana
+
+### Entra no escopo
+
+- Gerar comissão após atendimento concluído.
+- Exibir comissão por barbeiro.
+- Criar fechamento diário.
+- Criar cards do dia.
+
+### Não entra no escopo agora
+
+- Refinamentos visuais avançados
+- Otimizações profundas
+- Integrações pagas reais antes do fluxo local
+- Automações fora do escopo da semana
+
+Essa separação evita tentar fazer tudo ao mesmo tempo.
+
+---
+
+## 5. O que você precisa aprender antes de implementar
+
+- Definir comissão padrão.
+- Definir momento de geração.
+- Definir fórmula.
+- Controller
+- Service
+- Repository
+- DTO
+- validação
+- teste manual
+
+Explique cada item com suas palavras antes de codar. Se você não consegue explicar, ainda não está pronto para implementar.
+
+---
 
 ## 6. Onde achar para conseguir aplicar
 
-Use esta seção como anexo de estudo. Não precisa ler a documentação inteira. Leia somente a parte indicada em cada linha.
-
-| Tema | Link oficial | O que procurar |
+| O que preciso fazer | Onde achar | O que procurar |
 |---|---|---|
-| BigDecimal Java | <https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigDecimal.html> | Use BigDecimal para dinheiro. |
-| Spring Transactions | <https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative.html> | Use @Transactional ao concluir atendimento. |
-| PostgreSQL Aggregate Functions | <https://www.postgresql.org/docs/current/functions-aggregate.html> | Veja sum, count e group by. |
+| Java 21 | https://docs.oracle.com/en/java/javase/21/ | Tipos, records, enums, LocalDateTime, BigDecimal e UUID. |
+| Spring Data JPA | https://docs.spring.io/spring-data/jpa/reference/index.html | Entidades, repositories, consultas e relacionamentos. |
+| PostgreSQL | https://www.postgresql.org/docs/ | Tabelas, constraints, tipos de dados e consultas SQL. |
+| Spring Boot | https://docs.spring.io/spring-boot/documentation.html | Estrutura geral da aplicação, controllers e configuração. |
+| Next.js | https://nextjs.org/docs | Criar páginas, rotas e consumir o backend. |
 
-## 7. Exercício antes de programar
 
-Crie ou atualize este arquivo no seu repositório:
+### Como estudar a documentação
+
+Não tente ler tudo. Abra a documentação, procure o tópico indicado e anote:
+
+- o nome do conceito;
+- para que serve;
+- onde ele entra no projeto;
+- um exemplo pequeno;
+- uma dúvida que ficou.
+
+---
+
+## 7. Ordem prática sem código
+
+Siga esta ordem antes de implementar:
+
+1. Definir comissão padrão.
+2. Definir momento de geração.
+3. Definir fórmula.
+4. Criar fechamento diário.
+5. Criar cards simples.
+
+---
+
+## 8. Requisitos funcionais
+
+Requisitos funcionais descrevem **o que o sistema deve fazer**.
+
+| Código | Descrição |
+|---|---|
+| RF01 | Gerar comissão após atendimento concluído. |
+| RF02 | Exibir comissão por barbeiro. |
+| RF03 | Criar fechamento diário. |
+| RF04 | Criar cards do dia. |
+
+
+---
+
+## 9. Requisitos não funcionais
+
+Requisitos não funcionais descrevem **como o sistema deve se comportar**.
+
+| Código | Descrição |
+|---|---|
+| RNF01 | A funcionalidade deve respeitar isolamento por barbearia. |
+| RNF02 | Os erros devem ser claros para o usuário. |
+| RNF03 | A implementação deve ser simples o suficiente para manutenção por estudante. |
+| RNF04 | A documentação deve ser atualizada junto com a implementação. |
+
+
+---
+
+## 10. Regras de negócio
+
+Regras de negócio descrevem **condições reais da barbearia/plataforma** que o sistema precisa respeitar.
+
+| Código | Descrição |
+|---|---|
+| RN01 | Comissão não pode duplicar. |
+| RN02 | Valores monetários usam BigDecimal. |
+| RN03 | Fechamento deve ser rastreável. |
+
+
+Antes de programar, escolha 3 regras acima e escreva exemplos:
+
+- Exemplo correto;
+- Exemplo errado;
+- Mensagem de erro esperada.
+
+---
+
+## 11. Entidades conceituais da semana
+
+Estas são as entidades ou conceitos que provavelmente aparecerão no banco, no backend ou no frontend:
+
+- Commission
+- DailyClosing
+- PaymentMethod
+
+Para cada entidade, escreva:
+
+- Quais campos ela precisa ter?
+- Quem pode criar?
+- Quem pode editar?
+- Quem pode visualizar?
+- Ela deve ser apagada ou apenas inativada?
+- Ela pertence a uma barbearia específica?
+
+---
+
+## 12. Fluxo principal da semana
+
+1. Usuário inicia o fluxo principal da semana.
+2. Frontend envia dados para o backend.
+3. Controller recebe a requisição.
+4. Service aplica regras de negócio.
+5. Repository consulta ou persiste dados.
+6. Backend retorna sucesso ou erro.
+7. Frontend exibe resultado claro para o usuário.
+
+Agora desenhe esse fluxo em `docs/fluxos/semana-08.md`.
+
+---
+
+## 13. Telas, rotas e endpoints esperados
+
+### Telas ou áreas do frontend
+
+- Tela principal de comissão e fechamento diário.
+- Página de listagem.
+- Formulário simples.
+- Mensagens de erro e sucesso.
+
+### Endpoints prováveis
+
+| Método | Rota provável | Finalidade |
+|---|---|---|
+| GET | /commissions | Consultar/listar dados principais da semana |
+| POST | /commissions | Criar registro ou iniciar ação principal |
+| PATCH | /commissions/{id} | Atualizar status ou dados |
+| DELETE | /commissions/{id} | Cancelar, remover ou inativar conforme regra |
+
+
+> As rotas acima são referência de planejamento. Você pode ajustar os nomes, mas precisa manter consistência e documentar sua decisão.
+
+---
+
+## 14. Critérios de aceite
+
+Você só pode considerar a semana concluída quando conseguir provar que:
+
+- [ ] RF01: Gerar comissão após atendimento concluído.
+- [ ] RF02: Exibir comissão por barbeiro.
+- [ ] RF03: Criar fechamento diário.
+- [ ] RF04: Criar cards do dia.
+- [ ] A documentação da semana foi atualizada.
+- [ ] O README principal continua coerente.
+- [ ] O código novo não quebrou a Semana 1.
+- [ ] Você consegue explicar o fluxo sem abrir o código.
+
+---
+
+## 15. Casos de teste manuais
+
+Antes de usar testes automatizados, valide manualmente:
+
+| Caso | Entrada | Resultado esperado |
+|---|---|---|
+| Caminho feliz | Dados válidos | Operação concluída com sucesso |
+| Dados obrigatórios faltando | Campo obrigatório vazio | Erro claro de validação |
+| Usuário sem permissão | Perfil não autorizado | Acesso negado |
+| Dados de outra barbearia | `barbershopId` diferente | Sistema bloqueia ou não retorna dados |
+| Repetição indevida | Tentar duplicar operação | Sistema impede ou trata corretamente |
+
+---
+
+## 16. Erros comuns de iniciante
+
+| Erro | Por que acontece | Como evitar |
+|---|---|---|
+| Começar pela tela | Parece mais fácil ver algo visual | Primeiro defina regra e dados |
+| Criar entidade sem regra | Pressa para codar | Escreva regras antes da classe |
+| Misturar Controller e regra de negócio | Falta de separação | Controller recebe requisição; Service decide |
+| Esquecer `barbershopId` | Pensar como sistema de uma única barbearia | Todo dado operacional precisa pertencer a uma barbearia |
+| Não testar erro | Testar só o caminho feliz | Crie casos inválidos |
+| Copiar código sem entender | Atalho perigoso | Use a Parte 2 apenas como correção |
+
+---
+
+## 17. Diário de aprendizado da semana
+
+Crie ou atualize:
 
 ```txt
 docs/diario/semana-08.md
 ```
 
-Responda antes de implementar:
+Responda:
 
 1. O que esta semana entrega para o produto?
-2. Quem usa essa funcionalidade?
-3. Quais dados precisam existir?
-4. Quais regras podem dar erro?
-5. Como vou testar sem depender de tela bonita?
-6. Que documentação oficial eu consultei?
-7. Qual parte ainda ficou confusa?
+2. Por que essa entrega é necessária?
+3. Quais atores usam ou são impactados?
+4. Quais regras de negócio foram identificadas?
+5. Quais entidades parecem necessárias?
+6. Quais endpoints ou telas serão criados?
+7. Qual documentação oficial eu consultei?
+8. Quais dúvidas ainda ficaram?
+9. O que eu tentaria fazer diferente depois?
+10. Qual commit fecha esta semana?
 
-## 8. Checklist sem código
+---
 
-Marque apenas quando você realmente entendeu ou fez:
+## 18. Checklist antes de olhar a correção
 
-- [ ] Entendi o objetivo da semana.
+- [ ] Li a Parte 1 completa.
 - [ ] Entendi o problema de negócio.
-- [ ] Li pelo menos a documentação oficial principal da semana.
-- [ ] Desenhei o fluxo antes de codar.
-- [ ] Sei explicar quais dados serão criados ou alterados.
-- [ ] Sei explicar quais endpoints/telas devem existir.
-- [ ] Sei explicar o critério de aceite.
-- [ ] Tentei implementar antes de abrir a correção.
-- [ ] Registrei dúvidas e erros no diário da semana.
-
-## 9. Erros comuns de iniciante nesta semana
-
-- Começar pelo código sem entender a regra.
-- Criar tela antes de validar o backend.
-- Misturar regra de negócio dentro do Controller.
-- Não validar dados de entrada.
-- Não testar caso de erro.
-- Não registrar decisões na documentação.
-- Copiar a correção antes de tentar fazer sozinho.
-
-## 10. O que registrar no GitHub ao finalizar
-
-No final da semana, atualize o diário com:
-
-- o que foi feito;
-- o que funcionou;
-- o que deu erro;
-- como corrigiu;
-- links de documentação usados;
-- prints ou comandos de validação;
-- pendências para a próxima semana.
+- [ ] Escrevi os requisitos com minhas palavras.
+- [ ] Desenhei o fluxo principal.
+- [ ] Listei entidades e campos.
+- [ ] Consultei a documentação oficial.
+- [ ] Tentei implementar sem copiar a correção.
+- [ ] Testei pelo menos um caminho feliz.
+- [ ] Testei pelo menos um erro.
+- [ ] Atualizei o diário da semana.
 
 ---
 
-# Parte 2 — Guia com código/comandos para correção
+# PARTE 2 — Guia com código/comandos para correção
 
-> Use esta parte somente depois de tentar fazer a semana sozinho. A correção não existe para você copiar no início; ela existe para comparar, corrigir e entender o que faltou.
+> Use esta parte somente depois de tentar fazer sozinho.  
+> Ela não é para copiar no começo. Ela serve para comparar, corrigir e entender o que faltou.
 
-## Entidade Commission
+## 19. Estrutura esperada
 
-```java
-@Entity
-@Table(name = "commissions")
-public class Commission {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+```txt
+backend/src/main/java/com/varthex/barber/
+└── comissaoefechamentodiario/
+    ├── controller/
+    ├── service/
+    ├── repository/
+    ├── dto/
+    └── model/
 
-    @OneToOne(optional = false)
-    private Appointment appointment;
-
-    @ManyToOne(optional = false)
-    private Barber barber;
-
-    private BigDecimal grossAmount;
-    private BigDecimal percentage;
-    private BigDecimal commissionAmount;
-    private boolean paid;
-}
-```
-
-## Cálculo de referência
-
-```java
-BigDecimal commission = grossAmount
-    .multiply(percentage)
-    .divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
-```
-
-## Correção importante
-
-Antes de gerar comissão, confira se já existe comissão para o appointment.
-
-```java
-if (commissionRepository.existsByAppointmentId(appointmentId)) {
-    return;
-}
+frontend/src/app/
+└── comissao-e-fechamento-diario/
 ```
 
 ---
 
-# Commit sugerido da semana
+## 20. Comandos de verificação
+
+```bash
+cd backend
+./mvnw spring-boot:run
+
+cd ../frontend
+npm run dev
+
+# Verificar status
+git status
+curl http://localhost:8080/health
+```
+
+---
+
+## 21. Trecho de referência para correção
+
+```java
+BigDecimal commissionValue = appointmentValue
+    .multiply(commissionPercent)
+    .divide(BigDecimal.valueOf(100));
+
+// Gerar somente se appointment.status == COMPLETED e se não existir comissão.
+```
+
+---
+
+## 22. Como validar a correção
+
+- [ ] Fluxo principal funciona do início ao fim.
+- [ ] Permissões básicas são respeitadas.
+- [ ] Erros comuns foram tratados.
+- [ ] Documentação da semana foi atualizada.
+- [ ] Você consegue explicar o que fez sem olhar código.
+
+---
+
+## 23. Commit sugerido
 
 ```bash
 git add .
-git commit -m "docs: registra aprendizado da semana 08"
+git commit -m "feat: conclui semana 08 - comissao-e-fechamento-diario"
 ```
+
+Se a semana alterou apenas documentação:
+
+```bash
+git add docs
+git commit -m "docs: detalha aprendizado da semana 08"
+```
+
+---
+
+## 24. Resultado esperado ao final
+
+Ao final da Semana 08, você deve conseguir explicar:
+
+- qual problema real foi resolvido;
+- quais requisitos foram atendidos;
+- quais regras de negócio foram implementadas;
+- quais entidades foram criadas ou impactadas;
+- quais endpoints/telas foram necessários;
+- como validar manualmente a entrega;
+- onde consultar a documentação oficial para revisar o assunto.
