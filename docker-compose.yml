@@ -1,0 +1,112 @@
+# Define todos os containers/serviços que fazem parte do projeto
+services:
+
+  # Serviço do banco de dados PostgreSQL
+  postgres:
+    # Imagem oficial do PostgreSQL na versão 16
+    image: postgres:16
+
+    # Nome fixo do container para facilitar identificação no Docker
+    container_name: varthex-barber-postgres
+
+    # Reinicia o container automaticamente, exceto se você parar manualmente
+    restart: unless-stopped
+
+    # Variáveis usadas para criar o banco inicial
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: varthex_barber
+
+    # Mapeia a porta do container para sua máquina
+    # Porta 5432 é a porta padrão do PostgreSQL
+    ports:
+      - "5432:5432"
+
+    # Salva os dados do banco em um volume
+    # Assim, os dados não somem quando o container reiniciar
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+    # Verifica se o PostgreSQL está realmente pronto para receber conexões
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d varthex_barber"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # Serviço do Redis
+  redis:
+    # Imagem oficial do Redis na versão 7
+    image: redis:7
+
+    # Nome fixo do container do Redis
+    container_name: varthex-barber-redis
+
+    # Reinicia automaticamente, exceto se você parar manualmente
+    restart: unless-stopped
+
+    # Porta padrão do Redis
+    ports:
+      - "6379:6379"
+
+    # Volume para persistir dados do Redis, se necessário
+    volumes:
+      - redis-data:/data
+
+    # Testa se o Redis está respondendo
+    # O retorno esperado é PONG
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # Serviço do backend Java Spring Boot
+  backend:
+    # Faz o build usando o Dockerfile dentro da pasta backend
+    build: ./backend
+
+    # Nome fixo do container do backend
+    container_name: varthex-barber-backend
+
+    # Porta do backend
+    # Spring Boot normalmente roda na porta 8080
+    ports:
+      - "8080:8080"
+
+    # O backend depende do PostgreSQL e do Redis
+    # Ele só deve iniciar depois que os dois estiverem saudáveis
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  # Serviço do frontend Next.js
+  frontend:
+    # Faz o build usando o Dockerfile dentro da pasta frontend
+    build: ./frontend
+
+    # Nome fixo do container do frontend
+    container_name: varthex-barber-frontend
+
+    # Porta do frontend
+    # Next.js normalmente roda na porta 3000
+    ports:
+      - "3000:3000"
+
+    # O frontend depende do backend
+    # Isso não garante que a API esteja pronta, mas garante a ordem básica
+    depends_on:
+      - backend
+
+# Volumes usados pelos containers
+# Eles permitem persistir dados fora do ciclo de vida do container
+volumes:
+
+  # Volume do PostgreSQL
+  postgres-data:
+
+  # Volume do Redis
+  redis-data:
